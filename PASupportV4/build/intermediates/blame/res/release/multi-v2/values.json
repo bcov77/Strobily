@@ -1,0 +1,86 @@
+{
+    "logs": [
+        {
+            "outputFile": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\PASupportV4\\build\\intermediates\\res\\merged\\release\\values\\values.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\PASupportV4\\src\\main\\res\\values\\strings.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "19",
+                        "endColumns": "48",
+                        "endOffsets": "63"
+                    },
+                    "to": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "48",
+                        "endOffsets": "99"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\PASupportV4\\src\\main\\res\\values\\styles.xml",
+                    "from": {
+                        "startLines": "6,15",
+                        "startColumns": "4,4",
+                        "startOffsets": "191,522",
+                        "endLines": "12,17",
+                        "endColumns": "12,12",
+                        "endOffsets": "481,679"
+                    },
+                    "to": {
+                        "startLines": "3,10",
+                        "startColumns": "4,4",
+                        "startOffsets": "104,395",
+                        "endLines": "9,12",
+                        "endColumns": "12,12",
+                        "endOffsets": "390,550"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\PASupportV4\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values\\values.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\PASupportV4\\src\\main\\res\\values\\strings.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "19",
+                        "endColumns": "48",
+                        "endOffsets": "63"
+                    },
+                    "to": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "48",
+                        "endOffsets": "99"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\PASupportV4\\src\\main\\res\\values\\styles.xml",
+                    "from": {
+                        "startLines": "6,15",
+                        "startColumns": "4,4",
+                        "startOffsets": "191,522",
+                        "endLines": "12,17",
+                        "endColumns": "12,12",
+                        "endOffsets": "481,679"
+                    },
+                    "to": {
+                        "startLines": "3,10",
+                        "startColumns": "4,4",
+                        "startOffsets": "104,395",
+                        "endLines": "9,12",
+                        "endColumns": "12,12",
+                        "endOffsets": "390,550"
+                    }
+                }
+            ]
+        }
+    ]
+}

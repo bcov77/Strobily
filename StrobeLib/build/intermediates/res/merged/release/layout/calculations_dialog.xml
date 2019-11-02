@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+	<LinearLayout 
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical"
+	    >
+	    <TextView
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:textSize="16sp"
+	        android:text="These are rather advanced settings for when you use this app as a stroboscope."
+	        />
+	    
+	   	<CheckBox
+	   	    android:layout_width="wrap_content"
+	   	    android:layout_height="wrap_content"
+	   	    android:text="Use RPM"
+	   	    android:id="@+id/use_rpm_check_box"
+	   	    android:layout_marginTop="10dip"
+	   	    />
+	   	
+	   	<CheckBox
+	   	    android:layout_width="wrap_content"
+	   	    android:layout_height="wrap_content"
+	   	    android:text="Show Hz x2 and x½"
+	   	    android:id="@+id/show_x2_check"
+	   	    />
+	   	
+	   	<TextView
+	   	    android:layout_width="wrap_content"
+	   	    android:layout_height="wrap_content"
+	   	    android:text="Multiplier:"
+	   	    android:layout_marginTop="10dip"
+	   	    />
+	   	
+	   	<SeekBar
+	   	    android:layout_width="fill_parent"
+	   	    android:layout_height="wrap_content"
+	   	    android:layout_marginLeft="30dip"
+	   	    android:layout_marginRight="30dip"
+	    	android:id="@+id/multiplier_seek_bar"
+	    	/>
+	   	
+	   	<TextView
+	   	    android:layout_width="wrap_content"
+	   	    android:layout_height="wrap_content"
+	   	    android:layout_gravity="center_horizontal"
+	   	    android:id="@+id/multiplier_text"
+	   	    />
+		<TextView 
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+	   	    android:layout_gravity="center_horizontal"
+		    android:text="This doesn\'t actually change anything"
+		    />
+	   	
+	   	<TextView
+	   	    android:layout_width="wrap_content"
+	   	    android:layout_height="wrap_content"
+	   	    android:text="Late flash rejection threshold:"
+	   	    android:layout_marginTop="10dip"
+	   	    />
+	   	
+		<SeekBar
+	   	    android:layout_width="fill_parent"
+	   	    android:layout_height="wrap_content"
+	   	    android:layout_marginLeft="30dip"
+	   	    android:layout_marginRight="30dip"
+	    	android:id="@+id/late_flash_seek_bar"
+	    	/>
+		<TextView
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+	   	    android:layout_gravity="center_horizontal"
+		    android:id="@+id/late_flash_text"
+		    />
+		<TextView 
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+	   	    android:layout_gravity="center_horizontal"
+		    android:text="Set this as low as possible"
+		    />
+		
+		<TextView
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_marginTop="20dp"
+		    android:text="Flash preempt:"
+		    /> 	
+		<SeekBar
+	   	    android:layout_width="fill_parent"
+	   	    android:layout_height="wrap_content"
+	   	    android:layout_marginLeft="30dip"
+	   	    android:layout_marginRight="30dip"
+	    	android:id="@+id/flash_preempt_seek_bar"
+	    	/>
+		<TextView
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_gravity="center_horizontal"
+		    android:id="@+id/flash_preempt_text"
+		    />
+		<TextView 
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+	   	    android:layout_gravity="center_horizontal"
+		    android:text="Adjust until consistent"
+		    />
+		
+	   	<TextView
+	   	    android:layout_width="wrap_content"
+	   	    android:layout_height="wrap_content"
+	   	    android:textSize="18sp"
+	   	    android:text="For best stroboscope results:"
+	   	    android:layout_marginTop="10dip"
+	   	    />
+	   	<TextView 
+	   	    android:layout_width="wrap_content"
+	   	    android:layout_height="wrap_content"
+	   	    android:text="@string/calculations_text"
+	   	    /> 
+	   	    
+	   	<TextView
+	   	    android:layout_width="fill_parent"
+	   	    android:layout_height="wrap_content"
+	   	    android:gravity="center_horizontal"
+	   	    android:layout_marginTop="10dp"
+	   	    android:text="Beta testing!"
+	   	    android:textSize="24sp"
+	   	    />
+	   	<TextView
+	   	    android:layout_width="wrap_content"
+	   	    android:layout_height="wrap_content"
+	   	    android:text="@string/beta_testing"
+	   	    android:layout_marginLeft="3dp"
+	   	    android:layout_marginRight="3dp"
+	   	    />
+	   	
+	   	<Button
+	   	    android:layout_marginTop="10dp"
+	   	    android:layout_marginBottom="20dp"
+	   	    android:layout_width="wrap_content"
+	   	    android:layout_height="wrap_content"
+	   	    android:layout_gravity="center_horizontal"
+	   	    android:text="  Join the Beta  "
+	   	    android:id="@+id/beta_button"
+	   	    />
+	</LinearLayout>
+</ScrollView>

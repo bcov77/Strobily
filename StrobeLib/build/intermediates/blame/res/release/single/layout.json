@@ -1,0 +1,294 @@
+[
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\frag_help_fragment.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\layout\\frag_help_fragment.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\list_last_pat.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\layout\\list_last_pat.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\dia_tacho_help.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\layout\\dia_tacho_help.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\notification_media_cancel_action.xml",
+        "source": "C:\\Users\\Brian\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-28.0.0.aar\\bff4ca34d3a39349e461856c17835beb\\res\\layout\\notification_media_cancel_action.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\key_dialog.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\layout\\key_dialog.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\list_pat_part.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\layout\\list_pat_part.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\dia_enter_name.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\layout\\dia_enter_name.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\dia_burst.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\layout\\dia_burst.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\dialog_troubleshoot.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\layout\\dialog_troubleshoot.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\main.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\layout\\main.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\notification_template_big_media_narrow_custom.xml",
+        "source": "C:\\Users\\Brian\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-28.0.0.aar\\bff4ca34d3a39349e461856c17835beb\\res\\layout\\notification_template_big_media_narrow_custom.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\frag_advanced_fragment.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\layout\\frag_advanced_fragment.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\notification_template_media_custom.xml",
+        "source": "C:\\Users\\Brian\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-28.0.0.aar\\bff4ca34d3a39349e461856c17835beb\\res\\layout\\notification_template_media_custom.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\dia_tut_led_test.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\layout\\dia_tut_led_test.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\list_patterns.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\layout\\list_patterns.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\notification_template_big_media.xml",
+        "source": "C:\\Users\\Brian\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-28.0.0.aar\\bff4ca34d3a39349e461856c17835beb\\res\\layout\\notification_template_big_media.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\qa_item_expanded.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\layout\\qa_item_expanded.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\notification_template_big_media_custom.xml",
+        "source": "C:\\Users\\Brian\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-28.0.0.aar\\bff4ca34d3a39349e461856c17835beb\\res\\layout\\notification_template_big_media_custom.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\part_title.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\layout\\part_title.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\dia_edit_part.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\layout\\dia_edit_part.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\notification_template_icon_group.xml",
+        "source": "C:\\Users\\Brian\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-28.0.0.aar\\0b23c62747bf0262a29057c6df4ad125\\res\\layout\\notification_template_icon_group.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\notification_template_media.xml",
+        "source": "C:\\Users\\Brian\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-28.0.0.aar\\bff4ca34d3a39349e461856c17835beb\\res\\layout\\notification_template_media.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\frag_turntable_fragment.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\layout\\frag_turntable_fragment.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\go_buttons.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\layout\\go_buttons.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\dia_tut_super_bad.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\layout\\dia_tut_super_bad.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\faq_dialog.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\layout\\faq_dialog.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\dia_save_load.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\layout\\dia_save_load.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\notification_template_part_chronometer.xml",
+        "source": "C:\\Users\\Brian\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-28.0.0.aar\\0b23c62747bf0262a29057c6df4ad125\\res\\layout\\notification_template_part_chronometer.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\list_patterns_dialog.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\layout\\list_patterns_dialog.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\dia_update.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\layout\\dia_update.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\frag_music_fragment.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\layout\\frag_music_fragment.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\dia_rate.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\layout\\dia_rate.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\notification_template_lines_media.xml",
+        "source": "C:\\Users\\Brian\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-28.0.0.aar\\bff4ca34d3a39349e461856c17835beb\\res\\layout\\notification_template_lines_media.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\list_help_title.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\layout\\list_help_title.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\list_patterns_widget.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\layout\\list_patterns_widget.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\frag_diagnostic_fragment.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\layout\\frag_diagnostic_fragment.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\dia_overwrite.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\layout\\dia_overwrite.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\dia_refresh_custom.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\layout\\dia_refresh_custom.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\frag_tacho_fragment.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\layout\\frag_tacho_fragment.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\oth_my_ad_view.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\layout\\oth_my_ad_view.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\notification_media_action.xml",
+        "source": "C:\\Users\\Brian\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-28.0.0.aar\\bff4ca34d3a39349e461856c17835beb\\res\\layout\\notification_media_action.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\frag_strobe_fragment.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\layout\\frag_strobe_fragment.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\act_main_activity.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\layout\\act_main_activity.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\new_version_dialog.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\layout\\new_version_dialog.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\dia_beta.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\layout\\dia_beta.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\burst_dialog.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\layout\\burst_dialog.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\wid_number_picker.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\layout\\wid_number_picker.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\notification_template_big_media_narrow.xml",
+        "source": "C:\\Users\\Brian\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-28.0.0.aar\\bff4ca34d3a39349e461856c17835beb\\res\\layout\\notification_template_big_media_narrow.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\notification_action.xml",
+        "source": "C:\\Users\\Brian\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-28.0.0.aar\\0b23c62747bf0262a29057c6df4ad125\\res\\layout\\notification_action.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\frag_settings_fragment.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\layout\\frag_settings_fragment.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\frag_about_fragment.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\layout\\frag_about_fragment.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\dia_legend.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\layout\\dia_legend.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\notification_action_tombstone.xml",
+        "source": "C:\\Users\\Brian\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-28.0.0.aar\\0b23c62747bf0262a29057c6df4ad125\\res\\layout\\notification_action_tombstone.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\notification_template_part_time.xml",
+        "source": "C:\\Users\\Brian\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-28.0.0.aar\\0b23c62747bf0262a29057c6df4ad125\\res\\layout\\notification_template_part_time.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\list_q_and_a.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\layout\\list_q_and_a.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\help_layover.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\layout\\help_layover.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\dia_tut_preview_test.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\layout\\dia_tut_preview_test.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\dia_tut_intro.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\layout\\dia_tut_intro.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\warning_dialog.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\layout\\warning_dialog.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\dia_tut_perm.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\layout\\dia_tut_perm.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\calculations_dialog.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\layout\\calculations_dialog.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\help_layover2.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\layout\\help_layover2.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\qa_item.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\layout\\qa_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\frag_pattern_fragment.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\layout\\frag_pattern_fragment.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\dia_refresh_freq.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\layout\\dia_refresh_freq.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\settings_dialog.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\layout\\settings_dialog.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\frag_widget_fragment.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\layout\\frag_widget_fragment.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\main_small.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\layout\\main_small.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\list_copy_move.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\layout\\list_copy_move.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\dia_tut_done.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\layout\\dia_tut_done.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\hide.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\layout\\hide.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\more_features.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\layout\\more_features.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\layout\\notification_template_custom_big.xml",
+        "source": "C:\\Users\\Brian\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-28.0.0.aar\\0b23c62747bf0262a29057c6df4ad125\\res\\layout\\notification_template_custom_big.xml"
+    }
+]

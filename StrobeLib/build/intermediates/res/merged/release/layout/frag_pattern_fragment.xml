@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    
+    <ScrollView 
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/pattern_list"
+            >
+            
+        </LinearLayout>
+    </ScrollView>
+    
+    
+    
+	<View
+	    android:layout_width="fill_parent"
+	    android:layout_height="1dp"
+	    android:background="#FF00C0C0"
+       	android:layout_marginLeft="5dp"
+       	android:layout_marginRight="5dp"
+	    />
+	
+	
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+       	android:layout_marginLeft="10dp"
+       	android:layout_marginRight="10dp"
+       	android:layout_marginTop="5dp"
+       	android:layout_marginBottom="5dp"
+       	android:id="@+id/normal_buttons"
+        >
+    
+	    <Button
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:text="  Run once  "
+	        android:textSize="14sp"
+	        android:id="@+id/once_button"
+	        android:layout_weight="1"
+	        />
+	    
+	    <Button
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:text="  Save/Load  "
+	        android:textSize="14sp"
+	        android:id="@+id/save_load_button"
+	        android:layout_weight="1"
+	        />
+	    <Button
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:text="  Run looped  "
+	        android:textSize="14sp"
+	        android:id="@+id/looped_button"
+	        android:layout_weight="1"
+	        />
+	    
+    </LinearLayout>
+    
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+       	android:layout_marginLeft="10dp"
+       	android:layout_marginRight="10dp"
+       	android:layout_marginTop="5dp"
+       	android:layout_marginBottom="5dp"
+       	android:id="@+id/rearrange_buttons"
+       	android:visibility="gone"
+        >
+    
+	    <Button
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:text="  Stop rearranging  "
+	        android:textSize="14sp"
+	        android:id="@+id/stop_rearranging_button"
+	        android:layout_weight="1"
+	        />
+	    
+    </LinearLayout>
+    
+
+</LinearLayout>

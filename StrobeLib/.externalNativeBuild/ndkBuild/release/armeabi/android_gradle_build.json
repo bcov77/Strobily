@@ -1,0 +1,46 @@
+{
+  "buildFiles": [
+    "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\jni\\Android.mk",
+    "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\jni\\Application.mk"
+  ],
+  "cleanCommands": [
+    "C:\\android-ndk\\android-ndk-r10e\\ndk-build.cmd NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003dC:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\jni\\Android.mk NDK_APPLICATION_MK\u003dC:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\jni\\Application.mk APP_ABI\u003darmeabi NDK_ALL_ABIS\u003darmeabi NDK_DEBUG\u003d0 APP_PLATFORM\u003dandroid-14 NDK_OUT\u003dC:/Users/Brian/AndroidStudioProjects/StrobeLib/StrobeLib/build/intermediates/ndkBuild/release/obj NDK_LIBS_OUT\u003dC:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\ndkBuild\\release\\lib clean"
+  ],
+  "libraries": {
+    "NDK3-release-armeabi": {
+      "buildCommand": "C:\\android-ndk\\android-ndk-r10e\\ndk-build.cmd NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003dC:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\jni\\Android.mk NDK_APPLICATION_MK\u003dC:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\jni\\Application.mk APP_ABI\u003darmeabi NDK_ALL_ABIS\u003darmeabi NDK_DEBUG\u003d0 APP_PLATFORM\u003dandroid-14 NDK_OUT\u003dC:/Users/Brian/AndroidStudioProjects/StrobeLib/StrobeLib/build/intermediates/ndkBuild/release/obj NDK_LIBS_OUT\u003dC:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\ndkBuild\\release\\lib C:/Users/Brian/AndroidStudioProjects/StrobeLib/StrobeLib/build/intermediates/ndkBuild/release/obj/local/armeabi/libNDK3.so",
+      "toolchain": "toolchain-armeabi",
+      "abi": "armeabi",
+      "artifactName": "NDK3",
+      "files": [
+        {
+          "src": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\jni\\new.c",
+          "flags": "-fpic -ffunction-sections -funwind-tables -fstack-protector -no-canonical-prefixes -march\u003darmv5te -mtune\u003dxscale -msoft-float -mthumb -Os -g -DNDEBUG -fomit-frame-pointer -fno-strict-aliasing -finline-limit\u003d64 -IC:/Users/Brian/AndroidStudioProjects/StrobeLib/StrobeLib/src/main/jni -DANDROID -Wa,--noexecstack -Wformat -Werror\u003dformat-security -IC:/android-ndk/android-ndk-r10e/platforms/android-14/arch-arm/usr/include"
+        }
+      ],
+      "output": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\ndkBuild\\release\\obj\\local\\armeabi\\libNDK3.so"
+    },
+    "NDK2-release-armeabi": {
+      "buildCommand": "C:\\android-ndk\\android-ndk-r10e\\ndk-build.cmd NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003dC:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\jni\\Android.mk NDK_APPLICATION_MK\u003dC:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\jni\\Application.mk APP_ABI\u003darmeabi NDK_ALL_ABIS\u003darmeabi NDK_DEBUG\u003d0 APP_PLATFORM\u003dandroid-14 NDK_OUT\u003dC:/Users/Brian/AndroidStudioProjects/StrobeLib/StrobeLib/build/intermediates/ndkBuild/release/obj NDK_LIBS_OUT\u003dC:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\ndkBuild\\release\\lib C:/Users/Brian/AndroidStudioProjects/StrobeLib/StrobeLib/build/intermediates/ndkBuild/release/obj/local/armeabi/libNDK2.so",
+      "toolchain": "toolchain-armeabi",
+      "abi": "armeabi",
+      "artifactName": "NDK2",
+      "files": [
+        {
+          "src": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\jni\\native.c",
+          "flags": "-fpic -ffunction-sections -funwind-tables -fstack-protector -no-canonical-prefixes -march\u003darmv5te -mtune\u003dxscale -msoft-float -mthumb -Os -g -DNDEBUG -fomit-frame-pointer -fno-strict-aliasing -finline-limit\u003d64 -IC:/Users/Brian/AndroidStudioProjects/StrobeLib/StrobeLib/src/main/jni -DANDROID -Wa,--noexecstack -Wformat -Werror\u003dformat-security -IC:/android-ndk/android-ndk-r10e/platforms/android-14/arch-arm/usr/include"
+        }
+      ],
+      "output": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\ndkBuild\\release\\obj\\local\\armeabi\\libNDK2.so"
+    }
+  },
+  "toolchains": {
+    "toolchain-armeabi": {
+      "cCompilerExecutable": "C:\\android-ndk\\android-ndk-r10e\\toolchains\\arm-linux-androideabi-4.8\\prebuilt\\windows-x86_64\\bin\\arm-linux-androideabi-gcc"
+    }
+  },
+  "cFileExtensions": [
+    "c"
+  ],
+  "cppFileExtensions": []
+}

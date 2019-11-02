@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+  xmlns:android="http://schemas.android.com/apk/res/android">
+  
+    
+    <item android:id="@+id/menu_calculations"
+        android:icon="@android:drawable/ic_menu_sort_by_size"
+        android:title="Stroboscope"/>
+    <item android:id="@+id/menu_settings"
+        android:icon="@android:drawable/ic_menu_preferences"
+    	android:title="Settings"/>
+    <item android:id="@+id/menu_faq"
+        android:icon="@android:drawable/ic_menu_help"
+    	android:title="FAQ"/>
+    <item android:id="@+id/menu_troubleshoot"
+        android:icon="@android:drawable/ic_menu_report_image"
+        android:title="Torch Problem?"/>
+    <item android:id="@+id/menu_more_features"
+        android:icon="@android:drawable/ic_menu_info_details"
+        android:title="More features"/>
+    	
+    
+</menu>

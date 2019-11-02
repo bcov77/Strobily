@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Checking License"
+        android:layout_above="@+id/silly_text"
+        android:layout_centerHorizontal="true"
+        android:textSize="15sp"
+        android:textColor="@android:color/white"
+        android:id="@+id/license_text"
+        />
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="(I trust you, it\'s just everyone else I worry about)"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/silly_text"
+        />
+    <Button
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Retry"
+        android:layout_below="@+id/silly_text"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"
+        android:id="@+id/retry_button"
+        />
+    
+</RelativeLayout>

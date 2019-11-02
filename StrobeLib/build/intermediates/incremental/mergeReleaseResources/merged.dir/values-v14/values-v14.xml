@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppBaseTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+        <!-- API 14 theme customizations can go here. -->
+    </style>
+    <style name="MyListView" parent="@android:Widget.ListView">
+        <item name="android:divider">@drawable/list_divider</item>
+        <item name="android:dividerHeight">1dp</item>
+    </style>
+    <style name="Theme.NoTitle" parent="@android:style/Theme.Holo.NoActionBar">
+        
+        
+	    <item name="android:listDivider">@drawable/list_divider</item>
+        
+	    <item name="android:listViewStyle">@style/MyListView</item>
+        
+        
+    </style>
+    <style name="tut_dialog" parent="android:Theme">
+        
+	    <item name="android:windowNoTitle">true</item>
+	    <item name="android:windowFullscreen">true</item>
+	    <item name="android:windowIsFloating">false</item>
+        
+    </style>
+</resources>

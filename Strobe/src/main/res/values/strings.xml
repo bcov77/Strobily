@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, StrobeActivity!</string>
+    <string name="app_name">Strobily</string>
+    
+    <string name="retry_dialog">Something went wrong. Perhaps you don\'t currently have an internet connection. 
+        I\'d love to let you in, but some people might abuse this. If you think something weird is going on, here are some links. (Often this check will only 
+        work over wifi, I\'m not sure why, but try it. And if wifi doesn\'t work, try 3G.)</string>
+    <string name="application_error_dialog">I made a mistake in the licensing code. I would love for you to send me an email telling me about this incident.
+        The email is completely filled out for you, all you have to do is press send.</string>
+        
+    <string name="email_body">
+        \n
+        \nStrobe v%1$s (%2$d)
+        \nDevice type: %3$s
+        \nDevice Firmware: %4$s
+        \nError: Licensing application error: %5$d
+        </string>
+
+</resources>

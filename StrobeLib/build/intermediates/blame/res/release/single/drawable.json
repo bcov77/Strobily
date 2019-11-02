@@ -1,0 +1,50 @@
+[
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\drawable\\notification_bg.xml",
+        "source": "C:\\Users\\Brian\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-28.0.0.aar\\0b23c62747bf0262a29057c6df4ad125\\res\\drawable\\notification_bg.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\drawable\\help_layover_background.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\drawable\\help_layover_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\drawable\\title_divider.9.png",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\drawable\\title_divider.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\drawable\\down_arrow.png",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\drawable\\down_arrow.png"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\drawable\\notification_tile_bg.xml",
+        "source": "C:\\Users\\Brian\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-28.0.0.aar\\0b23c62747bf0262a29057c6df4ad125\\res\\drawable\\notification_tile_bg.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\drawable\\right_arrow.png",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\drawable\\right_arrow.png"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\drawable\\blue_border.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\drawable\\blue_border.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\drawable\\left_arrow.png",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\drawable\\left_arrow.png"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\drawable\\notification_bg_low.xml",
+        "source": "C:\\Users\\Brian\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-28.0.0.aar\\0b23c62747bf0262a29057c6df4ad125\\res\\drawable\\notification_bg_low.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\drawable\\boarder.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\drawable\\boarder.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\drawable\\list_divider.xml",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\drawable\\list_divider.xml"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\drawable\\notification_icon_background.xml",
+        "source": "C:\\Users\\Brian\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-28.0.0.aar\\0b23c62747bf0262a29057c6df4ad125\\res\\drawable\\notification_icon_background.xml"
+    }
+]

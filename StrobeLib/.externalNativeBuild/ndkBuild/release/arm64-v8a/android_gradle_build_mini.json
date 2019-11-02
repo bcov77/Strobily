@@ -1,0 +1,23 @@
+{
+  "buildFiles": [
+    "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\jni\\Android.mk",
+    "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\jni\\Application.mk"
+  ],
+  "cleanCommands": [
+    "C:\\android-ndk\\android-ndk-r10e\\ndk-build.cmd NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003dC:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\jni\\Android.mk NDK_APPLICATION_MK\u003dC:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\jni\\Application.mk APP_ABI\u003darm64-v8a NDK_ALL_ABIS\u003darm64-v8a NDK_DEBUG\u003d0 APP_PLATFORM\u003dandroid-21 NDK_OUT\u003dC:/Users/Brian/AndroidStudioProjects/StrobeLib/StrobeLib/build/intermediates/ndkBuild/release/obj NDK_LIBS_OUT\u003dC:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\ndkBuild\\release\\lib clean"
+  ],
+  "libraries": {
+    "NDK2-release-arm64-v8a": {
+      "artifactName": "NDK2",
+      "buildCommand": "C:\\android-ndk\\android-ndk-r10e\\ndk-build.cmd NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003dC:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\jni\\Android.mk NDK_APPLICATION_MK\u003dC:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\jni\\Application.mk APP_ABI\u003darm64-v8a NDK_ALL_ABIS\u003darm64-v8a NDK_DEBUG\u003d0 APP_PLATFORM\u003dandroid-21 NDK_OUT\u003dC:/Users/Brian/AndroidStudioProjects/StrobeLib/StrobeLib/build/intermediates/ndkBuild/release/obj NDK_LIBS_OUT\u003dC:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\ndkBuild\\release\\lib C:/Users/Brian/AndroidStudioProjects/StrobeLib/StrobeLib/build/intermediates/ndkBuild/release/obj/local/arm64-v8a/libNDK2.so",
+      "abi": "arm64-v8a",
+      "output": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\ndkBuild\\release\\obj\\local\\arm64-v8a\\libNDK2.so"
+    },
+    "NDK3-release-arm64-v8a": {
+      "artifactName": "NDK3",
+      "buildCommand": "C:\\android-ndk\\android-ndk-r10e\\ndk-build.cmd NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003dC:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\jni\\Android.mk NDK_APPLICATION_MK\u003dC:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\jni\\Application.mk APP_ABI\u003darm64-v8a NDK_ALL_ABIS\u003darm64-v8a NDK_DEBUG\u003d0 APP_PLATFORM\u003dandroid-21 NDK_OUT\u003dC:/Users/Brian/AndroidStudioProjects/StrobeLib/StrobeLib/build/intermediates/ndkBuild/release/obj NDK_LIBS_OUT\u003dC:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\ndkBuild\\release\\lib C:/Users/Brian/AndroidStudioProjects/StrobeLib/StrobeLib/build/intermediates/ndkBuild/release/obj/local/arm64-v8a/libNDK3.so",
+      "abi": "arm64-v8a",
+      "output": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\ndkBuild\\release\\obj\\local\\arm64-v8a\\libNDK3.so"
+    }
+  }
+}

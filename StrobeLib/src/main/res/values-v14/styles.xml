@@ -1,0 +1,36 @@
+<resources>
+
+    <!--
+        Base application theme for API 14+. This theme completely replaces
+        AppBaseTheme from BOTH res/values/styles.xml and
+        res/values-v11/styles.xml on API 14+ devices.
+    -->
+    <style name="Theme.NoTitle" parent="@android:style/Theme.Holo.NoActionBar">
+        
+        
+	    <item name="android:listDivider">@drawable/list_divider</item>
+        
+	    <item name="android:listViewStyle">@style/MyListView</item>
+        
+        
+    </style>
+    
+    
+    
+    
+    <style name="MyListView" parent="@android:Widget.ListView">
+        <item name="android:divider">@drawable/list_divider</item>
+        <item name="android:dividerHeight">1dp</item>
+    </style>
+    
+    
+    <style name="tut_dialog" parent="android:Theme">
+        
+	    <item name="android:windowNoTitle">true</item>
+	    <item name="android:windowFullscreen">true</item>
+	    <item name="android:windowIsFloating">false</item>
+        
+    </style>
+    
+
+</resources>

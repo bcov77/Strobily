@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/college_text"
+            android:textSize="18sp"
+            android:text="So, I\'m just a kid in college with a lot of engineering homework. If you want more features, you need to motivate me."
+            />
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rating_text"
+            android:layout_below="@+id/college_text"
+            android:layout_marginTop="16dp"
+            android:textSize="16sp"
+            android:text="The easiest way is to give this app a 5-star rating over at Google Play."
+            />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rating_layout"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/rating_text"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/boarder"
+            android:clickable="true"
+            >
+            
+          	<ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_free"
+                android:id="@+id/free_pic"
+                />
+          	<TextView 
+          	    android:layout_width="wrap_content"
+          	    android:layout_height="wrap_content"
+	            android:id="@+id/rating_textt"
+	            android:layout_centerVertical="true"
+	            android:layout_toRightOf="@+id/free_pic"
+	            android:layout_marginLeft="4dp"
+	            android:textSize="16sp"
+	            android:text="at Google Play"
+          	    />
+          	<View
+          	    android:layout_width="4dp"
+          	    android:layout_height="0dp"
+          	    android:layout_toRightOf="@+id/rating_textt"
+          	    />
+            
+            
+        </RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rating_subtext"
+            android:layout_below="@+id/rating_layout"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="4dp"
+            android:textSize="12sp"
+            android:text="(I check every day for new ratings)"
+            />
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/email_text"
+            android:layout_below="@+id/rating_subtext"
+            android:layout_marginTop="16dp"
+            android:textSize="16sp"
+            android:text="If you have any suggestions/problems, I love getting emails."
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/email_button"
+            android:layout_below="@+id/email_text"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="4dp"
+            android:text="Email me at bcoventry77@gmail.com"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/email_subtext"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/email_button"
+            android:layout_marginTop="0dp"
+            android:textSize="12sp"
+            android:text="(I\'ve responded to every email so far)"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/email_subtext2"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/email_subtext"
+            android:layout_marginTop="2dp"
+            android:textSize="12sp"
+            android:text="(Most new features came from emails)"
+            />
+        
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/buy_text"
+            android:layout_below="@+id/email_subtext2"
+            android:layout_marginTop="16dp"
+            android:textSize="16sp"
+            android:text="If you\'re really feeling generous (or don\'t like ads), you can buy this app for $1."
+            />
+        
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/buy_layout"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/buy_text"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/boarder"
+            android:clickable="true"
+            >
+            
+          	<ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_free"
+                android:id="@+id/buy_pic"
+                />
+          	<TextView 
+          	    android:layout_width="wrap_content"
+          	    android:layout_height="wrap_content"
+	            android:id="@+id/buy_textt"
+	            android:layout_centerVertical="true"
+	            android:layout_toRightOf="@+id/buy_pic"
+	            android:layout_marginLeft="4dp"
+	            android:textSize="16sp"
+	            android:text="at Google Play"
+          	    />
+          	<View
+          	    android:layout_width="4dp"
+          	    android:layout_height="0dp"
+          	    android:layout_toRightOf="@+id/buy_textt"
+          	    />
+            
+            
+        </RelativeLayout>
+       
+        <View android:layout_width="0dp"
+            android:layout_height="16dp"
+            />
+        
+        
+        
+        
+    </RelativeLayout>
+    
+
+</ScrollView>

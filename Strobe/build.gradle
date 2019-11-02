@@ -1,0 +1,31 @@
+apply plugin: 'com.android.application'
+
+android {
+    signingConfigs {
+    }
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.tp77.Strobe"
+        minSdkVersion 14
+        targetSdkVersion 28
+        versionCode 53
+        versionName '2.2.4'
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    productFlavors {
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project(':StrobeLib')
+    implementation 'com.android.support:support-v4:28.0.0'
+}

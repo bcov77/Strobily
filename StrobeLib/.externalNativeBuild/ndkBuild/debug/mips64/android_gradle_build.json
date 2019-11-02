@@ -1,0 +1,46 @@
+{
+  "buildFiles": [
+    "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\jni\\Android.mk",
+    "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\jni\\Application.mk"
+  ],
+  "cleanCommands": [
+    "C:\\android-ndk\\android-ndk-r10e\\ndk-build.cmd NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003dC:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\jni\\Android.mk NDK_APPLICATION_MK\u003dC:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\jni\\Application.mk APP_ABI\u003dmips64 NDK_ALL_ABIS\u003dmips64 NDK_DEBUG\u003d1 APP_PLATFORM\u003dandroid-21 NDK_OUT\u003dC:/Users/Brian/AndroidStudioProjects/StrobeLib/StrobeLib/build/intermediates/ndkBuild/debug/obj NDK_LIBS_OUT\u003dC:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\ndkBuild\\debug\\lib clean"
+  ],
+  "libraries": {
+    "NDK2-debug-mips64": {
+      "buildCommand": "C:\\android-ndk\\android-ndk-r10e\\ndk-build.cmd NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003dC:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\jni\\Android.mk NDK_APPLICATION_MK\u003dC:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\jni\\Application.mk APP_ABI\u003dmips64 NDK_ALL_ABIS\u003dmips64 NDK_DEBUG\u003d1 APP_PLATFORM\u003dandroid-21 NDK_OUT\u003dC:/Users/Brian/AndroidStudioProjects/StrobeLib/StrobeLib/build/intermediates/ndkBuild/debug/obj NDK_LIBS_OUT\u003dC:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\ndkBuild\\debug\\lib C:/Users/Brian/AndroidStudioProjects/StrobeLib/StrobeLib/build/intermediates/ndkBuild/debug/obj/local/mips64/libNDK2.so",
+      "toolchain": "toolchain-mips64",
+      "abi": "mips64",
+      "artifactName": "NDK2",
+      "files": [
+        {
+          "src": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\jni\\native.c",
+          "flags": "-fpic -fno-strict-aliasing -finline-functions -ffunction-sections -funwind-tables -fmessage-length\u003d0 -fno-inline-functions-called-once -fgcse-after-reload -frerun-cse-after-loop -frename-registers -no-canonical-prefixes -O0 -g -fno-omit-frame-pointer -IC:/Users/Brian/AndroidStudioProjects/StrobeLib/StrobeLib/src/main/jni -DANDROID -Wa,--noexecstack -Wformat -Werror\u003dformat-security -IC:/android-ndk/android-ndk-r10e/platforms/android-21/arch-mips64/usr/include"
+        }
+      ],
+      "output": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\ndkBuild\\debug\\obj\\local\\mips64\\libNDK2.so"
+    },
+    "NDK3-debug-mips64": {
+      "buildCommand": "C:\\android-ndk\\android-ndk-r10e\\ndk-build.cmd NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003dC:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\jni\\Android.mk NDK_APPLICATION_MK\u003dC:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\jni\\Application.mk APP_ABI\u003dmips64 NDK_ALL_ABIS\u003dmips64 NDK_DEBUG\u003d1 APP_PLATFORM\u003dandroid-21 NDK_OUT\u003dC:/Users/Brian/AndroidStudioProjects/StrobeLib/StrobeLib/build/intermediates/ndkBuild/debug/obj NDK_LIBS_OUT\u003dC:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\ndkBuild\\debug\\lib C:/Users/Brian/AndroidStudioProjects/StrobeLib/StrobeLib/build/intermediates/ndkBuild/debug/obj/local/mips64/libNDK3.so",
+      "toolchain": "toolchain-mips64",
+      "abi": "mips64",
+      "artifactName": "NDK3",
+      "files": [
+        {
+          "src": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\jni\\new.c",
+          "flags": "-fpic -fno-strict-aliasing -finline-functions -ffunction-sections -funwind-tables -fmessage-length\u003d0 -fno-inline-functions-called-once -fgcse-after-reload -frerun-cse-after-loop -frename-registers -no-canonical-prefixes -O0 -g -fno-omit-frame-pointer -IC:/Users/Brian/AndroidStudioProjects/StrobeLib/StrobeLib/src/main/jni -DANDROID -Wa,--noexecstack -Wformat -Werror\u003dformat-security -IC:/android-ndk/android-ndk-r10e/platforms/android-21/arch-mips64/usr/include"
+        }
+      ],
+      "output": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\ndkBuild\\debug\\obj\\local\\mips64\\libNDK3.so"
+    }
+  },
+  "toolchains": {
+    "toolchain-mips64": {
+      "cCompilerExecutable": "C:\\android-ndk\\android-ndk-r10e\\toolchains\\mips64el-linux-android-4.9\\prebuilt\\windows-x86_64\\bin\\mips64el-linux-android-gcc"
+    }
+  },
+  "cFileExtensions": [
+    "c"
+  ],
+  "cppFileExtensions": []
+}

@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fillViewport="true"
+    >
+	<RelativeLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content" 
+	    android:id="@+id/back_layer">
+	    
+	    <RelativeLayout
+	        android:layout_width="fill_parent"
+	        android:layout_height="fill_parent"
+	        android:layout_marginRight="40dp"
+	        android:id="@+id/main_layout"
+	        >
+
+	        <View
+	            android:layout_height="1dp"
+	            android:layout_width="1dp"
+	            android:id="@+id/focus_catch"
+	            android:focusable="true"
+	            android:focusableInTouchMode="true"
+				android:orientation="vertical"
+				android:clickable="true"
+	            />
+	        
+			<EditText
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:text="14.25"
+			    android:textSize="36sp"
+			    android:textColor="#FFFFFFFF"
+			    android:paddingLeft="30dp"
+			    android:layout_marginTop="10dp"
+			    android:id="@+id/frequency_text"
+			    android:singleLine="true"
+			    android:inputType="numberDecimal"
+			    android:background="@android:color/transparent"
+			    android:nextFocusLeft="@+id/focus_catch"
+			    android:nextFocusUp="@+id/focus_catch"
+			    android:nextFocusForward="@+id/focus_catch"
+			    android:nextFocusRight="@+id/focus_catch"
+			    android:nextFocusDown="@+id/focus_catch"
+				android:imeOptions="actionDone"
+			    />
+			
+			<TextView
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:text=" Hz"
+			    android:textSize="36sp"
+			    android:textColor="#FFFFFFFF"
+			    android:layout_alignBaseline="@+id/frequency_text"
+			    android:layout_toRightOf="@+id/frequency_text"
+			    android:id="@+id/space_unit"
+			    />
+			
+			
+			<View
+			    android:layout_width="fill_parent"
+			    android:layout_height="1dp"
+			    android:background="#FF00C0C0"
+			    android:layout_below="@+id/frequency_text"
+			    android:layout_marginTop="5dp"
+	        	android:layout_marginLeft="5dp"
+			    android:id="@+id/first_div"
+			    />
+			
+		    <TextView
+		    	android:layout_width="wrap_content"
+		    	android:layout_height="wrap_content"
+		    	android:layout_below="@+id/first_div"
+		    	android:layout_alignParentLeft="true"
+		    	android:id="@+id/duty_text"
+		    	android:text="Duty cycle:"
+		    	android:layout_marginTop="10dp"
+		    	android:layout_marginLeft="5dp"
+		    	/>
+		    <com.tp77.StrobeLib.ReversedSeekBar
+		    	android:layout_width="fill_parent"
+		    	android:layout_height="wrap_content"
+		    	android:layout_below="@+id/duty_text"
+		    	android:layout_marginLeft="30dip"
+		    	android:layout_marginRight="30dip"
+		    	android:id="@+id/duty_seek_bar"
+		    	/>
+		   <TextView
+		    	android:layout_width="wrap_content"
+		    	android:layout_height="wrap_content"
+		    	android:layout_below="@+id/duty_seek_bar"
+		    	android:layout_alignRight="@+id/duty_seek_bar"
+		    	android:id="@+id/duty_off"
+		    	android:text="Off"
+		    	/>
+		   	<TextView
+		    	android:layout_width="wrap_content"
+		    	android:layout_height="wrap_content"
+		    	android:layout_below="@+id/duty_seek_bar"
+		    	android:layout_toLeftOf="@+id/duty_off"
+		    	android:layout_marginRight="10dip"
+		    	android:id="@+id/cur_off_length"
+		    	/>
+		   	<TextView
+		    	android:layout_width="wrap_content"
+		    	android:layout_height="wrap_content"
+		    	android:layout_below="@+id/duty_on"
+		    	android:layout_alignLeft="@+id/cur_off_length"
+		    	android:layout_alignStart="@+id/cur_off_length"
+		    	android:textColor="#FFFF0000"
+		    	android:id="@+id/real_cur_off_length"
+		    	/>
+		    <TextView
+		    	android:layout_width="wrap_content"
+		    	android:layout_height="wrap_content"
+		    	android:layout_below="@+id/duty_seek_bar"
+		    	android:layout_centerHorizontal="true"
+		    	android:id="@+id/duty"
+		    	/>
+		   	<TextView
+		    	android:layout_width="wrap_content"
+		    	android:layout_height="wrap_content"
+		    	android:layout_below="@+id/duty_on"
+		    	android:layout_alignLeft="@+id/duty"
+		    	android:layout_alignStart="@+id/duty"
+		    	android:textColor="#FFFF0000"
+		    	android:id="@+id/real_duty"
+		    	/>
+		    <TextView
+		    	android:layout_width="wrap_content"
+		    	android:layout_height="wrap_content"
+		    	android:layout_below="@+id/duty_seek_bar"
+		    	android:layout_alignLeft="@+id/duty_seek_bar"
+		    	android:id="@+id/duty_on"
+		    	android:text="On"
+		    	/>
+		   	<TextView
+		    	android:layout_width="wrap_content"
+		    	android:layout_height="wrap_content"
+		    	android:layout_alignBaseline="@+id/duty_on"
+		    	android:layout_toRightOf="@+id/duty_on"
+		    	android:layout_marginLeft="6dip"
+		   	    android:padding="4dp"
+		    	android:id="@+id/cur_on_length"
+		    	/>
+		   	<TextView
+		    	android:layout_width="wrap_content"
+		    	android:layout_height="wrap_content"
+		    	android:layout_below="@+id/duty_on"
+		    	android:layout_alignLeft="@+id/cur_on_length"
+		    	android:layout_alignStart="@+id/cur_on_length"
+		    	android:layout_marginLeft="4dp"
+		    	android:textColor="#FFFF0000"
+		    	android:id="@+id/real_cur_on_length"
+		    	/>
+		   	
+		   	
+			<View
+			    android:layout_width="fill_parent"
+			    android:layout_height="1dp"
+			    android:background="#FF00C0C0"
+			    android:layout_below="@+id/real_cur_off_length"
+			    android:layout_marginTop="10dp"
+	        	android:layout_marginLeft="5dp"
+			    android:id="@+id/second_div"
+			    />
+		   	
+		   	<CheckBox
+		   	    android:layout_width="wrap_content"
+		   	    android:layout_height="wrap_content"
+		   	    android:layout_below="@+id/second_div"
+		   	    android:layout_marginTop="5dp"
+		   	    android:layout_marginLeft="10dp"
+		   	    android:text="Use saved ON length"
+		   	    android:id="@+id/steady_check"
+		   	    />
+		   	
+			
+		   	
+		   	<Button
+		   	    android:layout_width="wrap_content"
+		   	    android:layout_height="wrap_content"
+		   	    android:layout_below="@+id/steady_check"
+		   	    android:layout_alignParentRight="true"
+		   	    android:layout_marginRight="20dp"
+		   	    android:text="Save ON length"
+		   	    android:id="@+id/save_button"
+		   	    android:textSize="14sp"
+		   	    />
+		   	
+		   	
+		   	<TextView
+		   	    android:layout_width="wrap_content"
+		   	    android:layout_height="wrap_content"
+		   	    android:layout_toLeftOf="@+id/save_button"
+		   	    android:layout_alignBottom="@+id/save_button"
+		   	    android:layout_marginRight="10dp"
+		   	    android:text=" ms"
+		   	    android:textColor="#FFFFFFFF"
+		   	    android:textSize="14sp"
+		   	    android:id="@+id/ms"
+		   	    />
+		   	
+		   	
+		   	<EditText
+		   	    android:layout_width="wrap_content"
+		   	    android:layout_height="wrap_content"
+		   	    android:layout_toLeftOf="@+id/ms"
+		   	    android:layout_alignBottom="@+id/save_button"
+		   	    android:text="50"
+		   	    android:id="@+id/saved_num"
+			    android:singleLine="true"
+			    android:inputType="numberDecimal"
+			    android:background="@android:color/transparent"
+				android:paddingLeft="3dp"
+			    android:nextFocusLeft="@+id/focus_catch"
+			    android:nextFocusUp="@+id/focus_catch"
+			    android:nextFocusForward="@+id/focus_catch"
+			    android:nextFocusRight="@+id/focus_catch"
+			    android:nextFocusDown="@+id/focus_catch"
+		   	    android:textColor="#FFFFFFFF"
+		   	    android:textSize="14sp"
+		   	    />
+		   	
+		   	
+		   	<TextView
+		   	    android:layout_width="wrap_content"
+		   	    android:layout_height="wrap_content"
+		   	    android:layout_toLeftOf="@+id/saved_num"
+		   	    android:layout_alignBottom="@+id/save_button"
+		   	    android:text="Saved:"
+		   	    android:textColor="#FFFFFFFF"
+		   	    android:textSize="14sp"
+		   	    />
+		   	
+		   	
+			<View
+			    android:layout_width="fill_parent"
+			    android:layout_height="1dp"
+			    android:background="#FF00C0C0"
+			    android:layout_below="@+id/ms"
+			    android:layout_marginTop="10dp"
+	        	android:layout_marginLeft="5dp"
+			    android:id="@+id/third_div"
+			    />
+			
+			<RelativeLayout
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_marginTop="10dp"
+				android:id="@+id/x2x12"
+				android:layout_below="@+id/third_div"
+				android:visibility="invisible"
+		    	>
+		    	<View
+		    	    android:layout_width="0dp"
+		    	    android:layout_height="0dp"
+		    	    android:id="@+id/x2center"
+		    	    android:layout_centerHorizontal="true"
+		    	    />
+		    	<Button
+		    	    android:layout_width="wrap_content"
+		    	    android:layout_height="wrap_content"
+		    	    android:id="@+id/x12"
+		    	    android:layout_toLeftOf="@+id/x2center"
+		    	    android:layout_marginRight="20dp"
+		    	    android:text="×½"
+		    	    />
+		    	<Button
+		    	    android:layout_width="wrap_content"
+		    	    android:layout_height="wrap_content"
+		    	    android:id="@+id/x2"
+		    	    android:layout_toRightOf="@+id/x2center"
+		    	    android:layout_marginLeft="20dp"
+		    	    android:text="×2"
+		    	    />
+		    	
+		    	
+				<View
+				    android:layout_width="fill_parent"
+				    android:layout_height="1dp"
+				    android:background="#FF00C0C0"
+				    android:layout_below="@+id/x2"
+				    android:layout_marginTop="10dp"
+	        		android:layout_marginLeft="5dp"
+				    android:id="@+id/fourth_div"
+				    />
+		   	</RelativeLayout>
+		   	
+			<LinearLayout
+			    android:layout_width="fill_parent"
+			    android:layout_height="wrap_content"
+			    android:layout_below="@+id/x2x12"
+			    android:orientation="vertical"
+			    >
+			
+				<View
+				    android:layout_width="0dp"
+				    android:layout_height="0dp"
+				    android:layout_weight="1"
+				    />
+				
+				<Button
+				    android:layout_marginTop="5dp"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:layout_gravity="center_horizontal"
+				    android:textSize="17sp"
+				    android:text="Toggle running"
+				    android:id="@+id/running_button"
+				    />
+				
+				<Button
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:layout_gravity="center_horizontal"
+				    android:textSize="14sp"
+				    android:text="Burst (5)"
+				    android:id="@+id/burst_button"
+				    android:layout_marginTop="10dp"
+				    android:visibility="invisible"
+				    />
+			
+				
+				<View
+				    android:layout_width="0dp"
+				    android:layout_height="0dp"
+				    android:layout_weight="1"
+				    />
+				
+				
+			</LinearLayout>
+			
+			
+		    
+	    </RelativeLayout>
+	    
+	
+	    
+	    <com.tp77.StrobeLib.VerticalSeekbar 
+	        android:layout_width="fill_parent"
+	        android:layout_height="fill_parent"
+	        android:layout_alignTop="@+id/main_layout"
+	        android:layout_alignBottom="@+id/main_layout"
+	        android:id="@+id/vertical_seekbar"
+	        android:focusable="true"
+	        android:focusableInTouchMode="true"
+	        />
+	       
+	    
+	</RelativeLayout>
+</ScrollView>

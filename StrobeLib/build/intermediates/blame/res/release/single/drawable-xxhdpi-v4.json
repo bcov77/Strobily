@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\drawable-xxhdpi-v4\\ic_action_next_item.png",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\drawable-xxhdpi\\ic_action_next_item.png"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\drawable-xxhdpi-v4\\ic_action_back.png",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\drawable-xxhdpi\\ic_action_back.png"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\drawable-xxhdpi-v4\\one_star.png",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\drawable-xxhdpi\\one_star.png"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\drawable-xxhdpi-v4\\no_star.png",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\drawable-xxhdpi\\no_star.png"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\drawable-xxhdpi-v4\\ic_down_arrow2.png",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\drawable-xxhdpi\\ic_down_arrow2.png"
+    },
+    {
+        "merged": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\drawable-xxhdpi-v4\\half_star.png",
+        "source": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\res\\drawable-xxhdpi\\half_star.png"
+    }
+]

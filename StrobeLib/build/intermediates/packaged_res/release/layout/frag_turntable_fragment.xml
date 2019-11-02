@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/state0"
+        >
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:orientation="vertical"
+	        >
+	    
+		    <TextView
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:padding="8dp"
+		        android:text="@string/turntable_text"
+		        />
+		    
+		    <TextView
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:padding="8dp"
+		        android:text="Which pattern did you choose?"
+		        />
+		    
+		    <LinearLayout
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_gravity="center_horizontal"
+		        android:orientation="horizontal"
+		        >
+		        <Button
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="50 Hz"
+		            android:id="@+id/_50_hz_button"
+		            android:layout_marginRight="24dp"
+		            />
+		        <Button
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="60 Hz"
+		            android:id="@+id/_60_hz_button"
+		            android:layout_marginRight="24dp"
+		            />
+		        
+		    </LinearLayout>
+		    
+		    <TextView
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_marginTop="16dp"
+		        android:text="Testing..."
+		        android:textSize="20sp"
+		        android:gravity="center_horizontal"
+		        android:visibility="gone"
+		        android:id="@+id/calibrating"
+		        />
+		    
+	        <Button
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="Stop"
+	            android:id="@+id/stop_button"
+	            android:layout_marginTop="16dp"
+	            android:layout_gravity="center_horizontal"
+	            />
+	    </LinearLayout>
+    </ScrollView>
+    
+    
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/state1"
+        >
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:orientation="vertical"
+	        >
+	    
+	        <LinearLayout
+		        android:layout_width="match_parent"
+		        android:layout_height="match_parent"
+		        android:orientation="horizontal"
+		        >
+		        <ImageView
+			        android:layout_width="48dp"
+			        android:layout_height="48dp"
+			        android:padding="12dp"
+			        android:layout_marginLeft="4dp"
+			        android:layout_marginBottom="4dp"
+			        android:layout_marginTop="4dp"
+			        android:layout_marginRight="4dp"
+			        android:src="@drawable/ic_action_back"
+			        android:id="@+id/up"
+			    	android:background="@android:drawable/list_selector_background"
+			        />
+	            
+	            
+	            <TextView
+		            android:layout_width="match_parent"
+		            android:layout_height="wrap_content"
+		            android:padding="8dp"
+		            android:text="@string/turntable_text2"
+		        	/>
+	            
+	        </LinearLayout>
+	        
+	        
+		    <LinearLayout
+		        android:layout_width="match_parent"
+		        android:layout_height="match_parent"
+		        android:orientation="horizontal"
+		        >
+			    <LinearLayout
+			        android:layout_width="0dp"
+			        android:layout_height="match_parent"
+			        android:layout_weight="1"
+			        android:orientation="vertical"
+			        >
+			        <Button
+			            android:layout_width="fill_parent"
+			            android:layout_height="wrap_content"
+			            android:id="@+id/button0"
+			            android:text="60Hz"
+			            android:layout_marginTop="8dp"
+			            android:layout_marginLeft="16dp"
+			            android:layout_marginRight="16dp"
+			            />
+			        <Button
+			            android:layout_width="fill_parent"
+			            android:layout_height="wrap_content"
+			            android:id="@+id/button1"
+			            android:text="60Hz"
+			            android:layout_marginTop="8dp"
+			            android:layout_marginLeft="16dp"
+			            android:layout_marginRight="16dp"/>
+			        
+			        <Button
+			            android:layout_width="fill_parent"
+			            android:layout_height="wrap_content"
+			            android:id="@+id/button2"
+			            android:text="60Hz"
+			            android:layout_marginTop="8dp"
+			            android:layout_marginLeft="16dp"
+			            android:layout_marginRight="16dp"/>
+			        
+			        <Button
+			            android:layout_width="fill_parent"
+			            android:layout_height="wrap_content"
+			            android:id="@+id/button3"
+			            android:text="60Hz"
+			            android:layout_marginTop="8dp"
+			            android:layout_marginLeft="16dp"
+			            android:layout_marginRight="16dp"/>
+			        
+			        <Button
+			            android:layout_width="fill_parent"
+			            android:layout_height="wrap_content"
+			            android:id="@+id/button4"
+			            android:text="60Hz"
+			            android:layout_marginTop="8dp"
+			            android:layout_marginLeft="16dp"
+			            android:layout_marginRight="16dp"/>
+				</LinearLayout>
+			    <LinearLayout
+			        android:layout_width="0dp"
+			        android:layout_height="match_parent"
+			        android:layout_weight="1"
+			        android:orientation="vertical"
+			        >
+			        
+			        
+					<TextView
+					    android:layout_width="wrap_content"
+					    android:layout_height="wrap_content"
+					    android:text="14.25"
+					    android:textSize="28sp"
+					    android:textColor="#FFFFFFFF"
+					    android:id="@+id/frequency_text"
+					    android:singleLine="true"
+					    android:layout_gravity="center_horizontal"
+					    android:layout_marginTop="100dp"
+					    />
+					
+					
+					
+					<Button
+					    android:layout_width="wrap_content"
+					    android:layout_height="wrap_content"
+					    android:text="Toggle running"
+					    android:id="@+id/running_button"
+				        android:textSize="14sp"
+				        android:layout_marginTop="4dp"
+				        android:layout_gravity="center_horizontal"
+					    />
+			        
+		        </LinearLayout>
+	        </LinearLayout>
+	    </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

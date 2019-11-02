@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Refresh: "
+            android:textSize="14sp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="8dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            />
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:id="@+id/refresh_word"
+            android:layout_gravity="center_vertical"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:background="@android:drawable/list_selector_background"
+            />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Legend"
+            android:id="@+id/legend"
+            android:layout_marginRight="8dp"
+            />
+        
+    </LinearLayout>
+    
+    
+    <com.tp77.StrobeLib.DiagnosticView
+        android:layout_width="fill_parent"
+        android:layout_height="200dp"
+        android:id="@+id/diag_view"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        />
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="4dp"
+            >
+            
+            
+		    <LinearLayout
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:orientation="horizontal"
+		        >
+		        <TextView
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:textSize="12sp"
+		            android:textColor="?android:textColorPrimary"
+		            android:text="Pulse duration: "
+		            />
+		        <TextView
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:textSize="14sp"
+		            android:textColor="?android:textColorPrimary"
+		            android:id="@+id/duration"
+		            />
+		    </LinearLayout>
+		    
+		    
+		    <LinearLayout
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:orientation="horizontal"
+		        >
+		        <TextView
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:textSize="12sp"
+		            android:textColor="?android:textColorPrimary"
+		            android:text="Actual duty cycle: "
+		            />
+		        <TextView
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:textSize="14sp"
+		            android:textColor="?android:textColorPrimary"
+		            android:id="@+id/duty"
+		            />
+		    </LinearLayout>
+		    
+		    <LinearLayout
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:orientation="horizontal"
+		        >
+		        <TextView
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:textSize="12sp"
+		            android:textColor="?android:textColorPrimary"
+		            android:text="Actual Hz: "
+		            />
+		        <TextView
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:textSize="14sp"
+		            android:textColor="?android:textColorPrimary"
+		            android:id="@+id/actual_hz"
+		            />
+		    </LinearLayout>
+		    <LinearLayout
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:orientation="horizontal"
+		        >
+		        <TextView
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:textSize="12sp"
+		            android:textColor="?android:textColorPrimary"
+		            android:text="Theoretical max Hz: "
+		            />
+		        <TextView
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:textSize="14sp"
+		            android:textColor="?android:textColorPrimary"
+		            android:id="@+id/max_hz"
+		            />
+		    </LinearLayout>
+		    
+            
+            
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            >
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/led_state"
+                android:text="Show LED state"
+                />
+                
+        </LinearLayout>
+        
+    </LinearLayout>
+    
+</LinearLayout>

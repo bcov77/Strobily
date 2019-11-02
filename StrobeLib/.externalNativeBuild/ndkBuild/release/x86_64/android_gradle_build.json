@@ -1,0 +1,46 @@
+{
+  "buildFiles": [
+    "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\jni\\Android.mk",
+    "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\jni\\Application.mk"
+  ],
+  "cleanCommands": [
+    "C:\\android-ndk\\android-ndk-r10e\\ndk-build.cmd NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003dC:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\jni\\Android.mk NDK_APPLICATION_MK\u003dC:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\jni\\Application.mk APP_ABI\u003dx86_64 NDK_ALL_ABIS\u003dx86_64 NDK_DEBUG\u003d0 APP_PLATFORM\u003dandroid-21 NDK_OUT\u003dC:/Users/Brian/AndroidStudioProjects/StrobeLib/StrobeLib/build/intermediates/ndkBuild/release/obj NDK_LIBS_OUT\u003dC:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\ndkBuild\\release\\lib clean"
+  ],
+  "libraries": {
+    "NDK2-release-x86_64": {
+      "buildCommand": "C:\\android-ndk\\android-ndk-r10e\\ndk-build.cmd NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003dC:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\jni\\Android.mk NDK_APPLICATION_MK\u003dC:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\jni\\Application.mk APP_ABI\u003dx86_64 NDK_ALL_ABIS\u003dx86_64 NDK_DEBUG\u003d0 APP_PLATFORM\u003dandroid-21 NDK_OUT\u003dC:/Users/Brian/AndroidStudioProjects/StrobeLib/StrobeLib/build/intermediates/ndkBuild/release/obj NDK_LIBS_OUT\u003dC:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\ndkBuild\\release\\lib C:/Users/Brian/AndroidStudioProjects/StrobeLib/StrobeLib/build/intermediates/ndkBuild/release/obj/local/x86_64/libNDK2.so",
+      "toolchain": "toolchain-x86_64",
+      "abi": "x86_64",
+      "artifactName": "NDK2",
+      "files": [
+        {
+          "src": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\jni\\native.c",
+          "flags": "-ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -O2 -g -DNDEBUG -fomit-frame-pointer -fstrict-aliasing -funswitch-loops -finline-limit\u003d300 -IC:/Users/Brian/AndroidStudioProjects/StrobeLib/StrobeLib/src/main/jni -DANDROID -Wa,--noexecstack -Wformat -Werror\u003dformat-security -IC:/android-ndk/android-ndk-r10e/platforms/android-21/arch-x86_64/usr/include"
+        }
+      ],
+      "output": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\ndkBuild\\release\\obj\\local\\x86_64\\libNDK2.so"
+    },
+    "NDK3-release-x86_64": {
+      "buildCommand": "C:\\android-ndk\\android-ndk-r10e\\ndk-build.cmd NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003dC:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\jni\\Android.mk NDK_APPLICATION_MK\u003dC:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\jni\\Application.mk APP_ABI\u003dx86_64 NDK_ALL_ABIS\u003dx86_64 NDK_DEBUG\u003d0 APP_PLATFORM\u003dandroid-21 NDK_OUT\u003dC:/Users/Brian/AndroidStudioProjects/StrobeLib/StrobeLib/build/intermediates/ndkBuild/release/obj NDK_LIBS_OUT\u003dC:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\ndkBuild\\release\\lib C:/Users/Brian/AndroidStudioProjects/StrobeLib/StrobeLib/build/intermediates/ndkBuild/release/obj/local/x86_64/libNDK3.so",
+      "toolchain": "toolchain-x86_64",
+      "abi": "x86_64",
+      "artifactName": "NDK3",
+      "files": [
+        {
+          "src": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\src\\main\\jni\\new.c",
+          "flags": "-ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -O2 -g -DNDEBUG -fomit-frame-pointer -fstrict-aliasing -funswitch-loops -finline-limit\u003d300 -IC:/Users/Brian/AndroidStudioProjects/StrobeLib/StrobeLib/src/main/jni -DANDROID -Wa,--noexecstack -Wformat -Werror\u003dformat-security -IC:/android-ndk/android-ndk-r10e/platforms/android-21/arch-x86_64/usr/include"
+        }
+      ],
+      "output": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\ndkBuild\\release\\obj\\local\\x86_64\\libNDK3.so"
+    }
+  },
+  "toolchains": {
+    "toolchain-x86_64": {
+      "cCompilerExecutable": "C:\\android-ndk\\android-ndk-r10e\\toolchains\\x86_64-4.9\\prebuilt\\windows-x86_64\\bin\\x86_64-linux-android-gcc"
+    }
+  },
+  "cFileExtensions": [
+    "c"
+  ],
+  "cppFileExtensions": []
+}

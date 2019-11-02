@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <ImageView
+        android:layout_height="32dp"
+        android:layout_width="32dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/ic_left_arrow"
+        android:id="@+id/back"
+        />
+
+	<ScrollView
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:fillViewport="true"
+		android:minHeight="10000dp"
+		>
+		<FrameLayout
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			>
+
+			<LinearLayout
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical"
+				android:layout_gravity="center">
+
+				<View
+					android:layout_width="0dp"
+					android:layout_height="0dp"
+					android:layout_weight="0"
+					/>
+
+				<TextView
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					android:text="Select a LED control method that seems to make your flash work the best"
+					android:layout_gravity="center_horizontal"
+					android:textColor="#FFFFFFFF"
+					android:layout_marginBottom="20dp"
+					android:textSize="14sp"
+					android:layout_marginLeft="16dp"
+					android:layout_marginRight="16dp"
+					/>
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="LED control method:"
+					android:layout_gravity="center_horizontal"
+					android:textColor="#FFFFFFFF"
+					android:textSize="24sp"
+					android:layout_marginLeft="16dp"
+					android:layout_marginRight="16dp"
+					/>
+				<RadioGroup
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center_horizontal"
+					android:layout_marginLeft="16dp"
+					android:layout_marginRight="16dp"
+					android:id="@+id/radio_group"
+					>
+					<RadioButton
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="Old camera"
+						android:textColor="#FFFFFFFF"
+						android:id="@+id/old_camera"
+						android:textSize="18sp"
+						android:layout_marginTop="12dp"
+						/>
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:textSize="14sp"
+						android:text="(Best)"
+						android:textColor="#FFC0C0C0"
+						android:layout_marginLeft="40dp"
+						android:layout_marginRight="40dp"
+						android:layout_marginBottom="4dp"
+						android:gravity="center_horizontal"
+						android:layout_gravity="center_horizontal"/>
+
+					<RadioButton
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="New camera"
+						android:textColor="#FFFFFFFF"
+						android:id="@+id/new_camera"
+						android:textSize="18sp"
+						android:layout_marginTop="12dp"
+						/>
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:textSize="14sp"
+						android:text="(Second best)"
+						android:textColor="#FFC0C0C0"
+						android:layout_marginLeft="40dp"
+						android:layout_marginRight="40dp"
+						android:layout_marginBottom="4dp"
+						android:gravity="center_horizontal"
+						android:layout_gravity="center_horizontal"/>
+					<RadioButton
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="Old camera preview"
+						android:textColor="#FFFFFFFF"
+						android:id="@+id/old_camera_preview"
+						android:textSize="18sp"
+						android:layout_marginTop="12dp"
+						/>
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:textSize="14sp"
+						android:text="(Really bad)"
+						android:textColor="#FFC0C0C0"
+						android:layout_marginLeft="40dp"
+						android:layout_marginRight="40dp"
+						android:layout_marginBottom="4dp"
+						android:gravity="center_horizontal"
+						android:layout_gravity="center_horizontal"/>
+				</RadioGroup>
+
+
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="horizontal"
+					android:layout_marginLeft="16dp"
+					android:layout_marginRight="16dp"
+					android:layout_marginTop="32dp"
+					>
+
+					<Button
+						android:layout_width="0dp"
+						android:layout_height="wrap_content"
+						android:text="Torch"
+						android:id="@+id/torch"
+						android:layout_weight="1"
+						android:textSize="18sp"
+						/>
+
+					<Button
+						android:layout_width="0dp"
+						android:layout_height="wrap_content"
+						android:text="10 Hz Strobe"
+						android:id="@+id/strobe"
+						android:textSize="18sp"
+						android:layout_weight="1"
+						/>
+
+				</LinearLayout>
+
+
+
+				<View
+					android:layout_width="0dp"
+					android:layout_height="0dp"
+					android:layout_weight="0"
+					/>
+
+			</LinearLayout>
+		</FrameLayout>
+	</ScrollView>
+
+</LinearLayout>

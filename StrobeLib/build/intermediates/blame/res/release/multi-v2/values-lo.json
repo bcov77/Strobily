@@ -1,0 +1,34 @@
+{
+    "logs": [
+        {
+            "outputFile": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\res\\merged\\release\\values-lo\\values-lo.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\Brian\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-28.0.0.aar\\0b23c62747bf0262a29057c6df4ad125\\res\\values-lo\\values-lo.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "C:\\Users\\Brian\\AndroidStudioProjects\\StrobeLib\\StrobeLib\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-lo\\values-lo.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\Brian\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-28.0.0.aar\\0b23c62747bf0262a29057c6df4ad125\\res\\values-lo\\values-lo.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        }
+    ]
+}

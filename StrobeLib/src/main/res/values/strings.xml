@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, StrobeActivity!</string>
+    <string name="app_name">Strobily</string>
+    <string name="S_AD">xfes5</string>
+    <string name="S_WIDGET">widget</string>
+    
+    <string name="free_link">https://play.google.com/store/apps/details?id=com.tp77.StrobeAd</string>
+    <string name="paid_link">https://play.google.com/store/apps/details?id=com.tp77.Strobe</string>
+    
+    <string name="troubleshoot">If the strobe light isn\'t working for you, try these settings. DROID phones will almost definitely need the preview hack. The gentle
+        strobe is new and is for phones whose drivers can be easily overwhelmed by LED commands.
+       	\n\nIn any case, if you are having trouble, I still love getting these emails. (The email is already 
+        filled out for you.)</string>
+        
+        
+    <string name="calculations_text">1. Enable airplane mode outside this app\n2.
+        Enable airplane mode inside this app with the checkbox\n3.
+        Long-click \"Save ON Length\" for 0 ms ON length\n4.
+        Check \"Steady ON length\"\n5.
+        Get frequency close with sliders\n6.
+        Press \"Hide\" button\n7.
+        Fine tune frequency with volume keys\n8.
+        Adjust the settings above\n9.
+        Lock phone and wait for system to settle</string>
+        
+    <string name="beta_testing">This summer I\'m going to be completely rewriting this app with all the new skillz I\'ve picked up.
+        But with any complete rewrite, it\'s important to test it out before giving it to the general public to avoid one-stars.
+        I need some people who enjoy this app to become my beta testers and try out the new version.
+        \nPros:
+        \n - The new version will be <b>awesome</b>
+        \n - You\'ll get to see it a few months early
+        \nCons:
+        \n - It might not work right
+        \n\nSo if you\'re interested, click the link below. You always have the choice to leave the beta if you get annoyed.</string>
+        
+    <string name="new_version_text">- Fixed issue with hand-typing hz
+        \n- Fixed a bunch more crashes
+        \n\n- Is the app crash-proof now? Almost...
+        </string>
+        
+    <string name="music_battery">This uses <i><b>a lot</b></i> of power. Connect your charger if you are going to use this for more than 10 minutes.</string>
+        
+    <string name="turntable_text">Welcome to the Strobily turntable calibrator. This is for calibrating your record-playing
+        turntables. To begin, you\'ll need to attach a pattern to your turntable. A good start would be to search \"strobe calibrate 
+        turntable\" on Google.</string>
+        
+    <string name="turntable_text2">Select the highest frequency that is green, then adjust your turntable until the pattern appears 
+        to stop moving.</string>
+        
+    <string name="widget_text">Welcome to the Strobily widget creator. This page allows you to set any of your saved <b>patterns</b>
+        as widgets that you can click on your homescreen.
+        \n\nTo begin, select a pattern:
+    </string>
+    
+    <string name="tacho_help_1">This part of the app uses sound to identify the frequency of a spinning object. To use it, find a spinning
+        object that is making a sound and press one of the four buttons to take a sound sample.
+        \n\nWhen the results appear, the first number is the frequency that was identified and the other buttons represent fractions of that frequency.
+        The greener a button is, the stronger that frequency was identified. (However if they\'re all green, most likely no match was found.) Normal-colored
+        buttons did not rank in the top 5.
+        \n\nIf your spinning object is not making a sound, you may have to intervene. An example would be sticking a playing card into a fan in order
+        to make a repeating sound.
+        </string>
+        
+    <string name="email_body">
+        \n
+        \nDid your LED work in the beginning? :
+        \nAutofocus hack result:
+        \nPreview hack result:
+        \n
+        \n(I read all of these by hand, so feel free to write whatever you want)
+        \nStrobily v%1$s (%2$d)
+        \nDevice type: %3$s
+        \nDevice Firmware: %4$s
+        </string>
+        
+    
+    <string name="email_body2">
+        \n
+        \n
+        \n
+        \nStrobily v%1$s (%2$d)
+        \nDevice type: %3$s
+        \nDevice Firmware: %4$s
+        </string>
+        
+    <string name="email_body_friendly">
+        \n
+        \n
+        \n(Make sure you add a subject, I don\'t want an inbox full of (No Subject))
+        \nStrobily v%1$s (%2$d)
+        \nDevice type: %3$s
+        \nDevice Firmware: %4$s
+        </string>
+    
+    <string name="legend_first">
+        This graph show what the app was doing during the past 100 flashes. The x-axis width is set so that it exactly
+        matches the frequency of the strobe. \n\n
+        If the graph is this color, the app is:
+    </string>
+  
+</resources>

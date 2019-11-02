@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/help_layover_background"
+    android:id="@+id/help_layover_layout"
+     >
+     
+     
+    
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Use volume keys"
+        android:textSize="20sp"
+        android:textColor="@android:color/white"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:id="@+id/volume_text"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="to fine tune"
+        android:textSize="20sp"
+        android:layout_below="@+id/volume_text"
+        android:textColor="@android:color/white"
+        android:layout_centerHorizontal="true"
+        />
+    
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:src="@drawable/left_arrow"
+        android:layout_marginTop="62dp"
+        android:layout_toLeftOf="@+id/volume_text"
+        android:layout_marginRight="10dp"
+        />
+    <ImageView 
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:src="@drawable/right_arrow"
+        android:layout_marginTop="62dp"
+        android:layout_toRightOf="@+id/volume_text"
+        android:layout_marginLeft="10dp"
+        />
+    
+    
+  	
+    
+   
+    
+  
+
+</RelativeLayout>
