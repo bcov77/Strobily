@@ -3,13 +3,13 @@ apply plugin: 'com.android.application'
 android {
     signingConfigs {
     }
-    compileSdkVersion 28
+    compileSdkVersion 33
     defaultConfig {
         applicationId "com.tp77.Strobe"
         minSdkVersion 14
-        targetSdkVersion 28
-        versionCode 53
-        versionName '2.2.4'
+        targetSdkVersion 33
+        versionCode 54
+        versionName '2.2.5'
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -22,6 +22,7 @@ android {
     }
     productFlavors {
     }
+    namespace 'com.tp77.Strobe'
 }
 
 dependencies {

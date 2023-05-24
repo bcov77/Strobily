@@ -34,9 +34,7 @@
         \n - It might not work right
         \n\nSo if you\'re interested, click the link below. You always have the choice to leave the beta if you get annoyed.</string>
         
-    <string name="new_version_text">- Fixed issue with hand-typing hz
-        \n- Fixed a bunch more crashes
-        \n\n- Is the app crash-proof now? Almost...
+    <string name="new_version_text">- Updated to newest version of android apk (so it\'ll stay in the play store). See you in 2025 lol
         </string>
         
     <string name="music_battery">This uses <i><b>a lot</b></i> of power. Connect your charger if you are going to use this for more than 10 minutes.</string>

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.tp77.StrobeAd"
-      android:installLocation="auto">
+    android:installLocation="auto">
     
     <uses-permission android:name="android.permission.CAMERA"/>
   	<uses-permission android:name="android.permission.FLASHLIGHT"/>
@@ -30,7 +29,8 @@
         tools:replace="android:icon,android:theme">
         <activity android:name="com.tp77.StrobeAd.StrobeAdActivity"
             	  android:screenOrientation="portrait"
-                  android:label="@string/app_name">
+                  android:label="@string/app_name"
+                  android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

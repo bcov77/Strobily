@@ -384,9 +384,7 @@
         If the graph is this color, the app is:
     </string>
     <string name="music_battery">This uses <i><b>a lot</b></i> of power. Connect your charger if you are going to use this for more than 10 minutes.</string>
-    <string name="new_version_text">- Fixed issue with hand-typing hz
-        \n- Fixed a bunch more crashes
-        \n\n- Is the app crash-proof now? Almost...
+    <string name="new_version_text">- Updated to newest version of android apk (so it\'ll stay in the play store). See you in 2025 lol
         </string>
     <string name="paid_link">https://play.google.com/store/apps/details?id=com.tp77.Strobe</string>
     <string name="tacho_help_1">This part of the app uses sound to identify the frequency of a spinning object. To use it, find a spinning

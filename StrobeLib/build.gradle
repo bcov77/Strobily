@@ -1,11 +1,10 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 28
-    buildToolsVersion "28.0.3"
+    compileSdkVersion 33
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 26
+        targetSdkVersion 33
 
         ndk {
             moduleName "NDK2"
@@ -24,6 +23,7 @@ android {
     }
     productFlavors {
     }
+    namespace 'com.tp77.StrobeLib'
 }
 
 dependencies {

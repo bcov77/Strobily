@@ -197,10 +197,6 @@ public class MainActivity extends FragmentActivity {
         mAds = getPackageName().contains("Ad");
 
 		mPrefs =  PreferenceManager.getDefaultSharedPreferences(this);
-		Editor e3 = mPrefs.edit();
-		e3.putInt(SettingsFragment.P_FLASH_COLOR, 1);
-		MainActivity.apply(e3);
-		Toast.makeText(this, "Color set to red", Toast.LENGTH_SHORT).show();
 		
 		mLayoutInflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
 		mPowerManager = (PowerManager) getSystemService(POWER_SERVICE);

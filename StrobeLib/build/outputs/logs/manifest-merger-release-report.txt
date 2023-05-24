@@ -1,52 +1,44 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml:2:1-18:12
-INJECTED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml:2:1-18:12
-INJECTED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml:2:1-18:12
-INJECTED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml:2:1-18:12
-INJECTED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml:2:1-18:12
-INJECTED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml:2:1-18:12
-INJECTED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml:2:1-18:12
+ADDED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml:2:1-17:12
+INJECTED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml:2:1-17:12
+INJECTED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml:2:1-17:12
 	package
-		ADDED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml:3:7-35
 		INJECTED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml
+		ADDED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml:2:1-17:12
 		INJECTED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml
 	android:versionName
-		ADDED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml:5:7-34
-		INJECTED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml
+		ADDED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml:4:7-34
 	xmlns:android
 		ADDED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml:2:11-69
 	android:versionCode
-		ADDED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml:4:7-30
-		INJECTED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml
+		ADDED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml:3:5-28
 	android:installLocation
-		ADDED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml:6:7-37
+		ADDED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml:5:7-37
 uses-permission#android.permission.CAMERA
-ADDED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml:10:5-64
+ADDED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml:9:5-64
 	android:name
-		ADDED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml:10:22-62
+		ADDED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml:9:22-62
 uses-permission#android.permission.FLASHLIGHT
-ADDED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml:11:4-67
+ADDED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml:10:4-67
 	android:name
-		ADDED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml:11:21-65
+		ADDED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml:10:21-65
 uses-permission#android.permission.RECORD_AUDIO
-ADDED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml:12:5-71
+ADDED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml:11:5-71
 	android:name
-		ADDED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml:12:22-68
+		ADDED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml:11:22-68
 uses-permission#android.permission.WAKE_LOCK
-ADDED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml:13:5-67
+ADDED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml:12:5-67
 	android:name
-		ADDED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml:13:22-65
+		ADDED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml:12:22-65
 uses-permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml:14:4-77
+ADDED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml:13:4-77
 	android:name
-		ADDED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml:14:21-75
+		ADDED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml:13:21-75
 uses-permission#android.permission.FOREGROUND_SERVICE
-ADDED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml:15:4-75
+ADDED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml:14:4-75
 	android:name
-		ADDED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml:15:21-73
+		ADDED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml:14:21-73
 uses-sdk
 INJECTED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml
