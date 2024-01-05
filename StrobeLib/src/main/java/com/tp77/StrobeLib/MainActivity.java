@@ -10,6 +10,7 @@ import com.tp77.StrobeLib.TitleScroller.OnTitleClickListener;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.NotificationManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -62,6 +63,8 @@ public class MainActivity extends FragmentActivity {
 	public static final String P_OPEN_HACK = "open_hack";
 	public static final String P_TUTORIAL_RESET = "tutorial_reset";
 	public static final String P_DIAGNOSTIC_SET = "diagnostic_set";
+	public static final String P_NEEDS_NOTIF = "needs_notification";
+	public static final String P_TRIED_NOTIF = "tried_notification";
 
 	public static final String P_OPENS = "opens";
 	public static final String P_RATED = "rated";
@@ -173,6 +176,7 @@ public class MainActivity extends FragmentActivity {
 
 	private static final int REQUEST_CAMERA_PERMISSION = 1;
 	private static final int REQUEST_MICROPHONE_PERMISSION = 2;
+	public static final int REQUEST_NOTIFICATION_PERMISSION = 3;
 	
 	public boolean mRequestedCamera = false;
 	
@@ -419,7 +423,27 @@ public class MainActivity extends FragmentActivity {
 		}
 		
 	}
-	
+
+	public boolean checkNotificationsEnabled() {
+		NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+			if ( ! manager.areNotificationsEnabled() ) {
+				return false;
+			}
+		}
+		return true;
+	}
+	public void doNotifCheck( boolean ignore_shown) {
+		if (checkNotificationsEnabled()) {
+			return;
+		}
+		if (ignore_shown || (mPrefs.getBoolean(MainActivity.P_NEEDS_NOTIF, false ) &&
+				 !mPrefs.getBoolean(MainActivity.P_TRIED_NOTIF, false))) {
+
+			EveryDialog.showDialog(EveryDialog.N_NOTIF, this);
+		}
+	}
 	
 	public void setupScroller(boolean refresh) {
 		mTitleScroller.setTitles(getTitles());
@@ -459,6 +483,8 @@ public class MainActivity extends FragmentActivity {
 	public void onResume() {
 		super.onResume();
 		mPaused = false;
+
+		doNotifCheck(false);
 		
 		int screen = mPrefs.getInt(P_WHICH_SCREEN, F_STROBE+1);
 		mPager.setCurrentItem(screen);
@@ -1726,6 +1752,12 @@ public class MainActivity extends FragmentActivity {
 			if (! selfPermissionGranted(Manifest.permission.RECORD_AUDIO) ) {
 				Toast.makeText(this, "Mircophone permission denied! (Fix in System Settings)", Toast.LENGTH_SHORT ).show();
 			}
+		}
+		if ( requestCode == REQUEST_NOTIFICATION_PERMISSION ) {
+			if (! selfPermissionGranted(Manifest.permission.POST_NOTIFICATIONS) ) {
+				Toast.makeText(this, "Fix this by allowing Strobily to show notifications in System Settings.", Toast.LENGTH_SHORT ).show();
+			}
+			updateSliders();
 		}
 	}
 	

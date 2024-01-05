@@ -1,10 +1,12 @@
 package com.tp77.StrobeLib;
 
 import android.app.Activity;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
@@ -53,7 +55,7 @@ public class SettingsFragment extends MyFragment {
 		mRoot = v;
 		
 		SeekBar sb = (SeekBar)v.findViewById(R.id.max_seek_bar);
-		sb.setMax(99);
+		sb.setMax(999);
 		sb.setProgress(getMaxFrequency(mActivity)-1);
 		sb.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 			@Override
@@ -65,6 +67,8 @@ public class SettingsFragment extends MyFragment {
 				
 				updateSliders(false);
 			}
+
+
 			@Override
 			public void onStartTrackingTouch(SeekBar seekBar) {
 			}
@@ -125,6 +129,7 @@ public class SettingsFragment extends MyFragment {
 					setPref(P_PREVIEW_HACK, false, mActivity);
 				}
 				updateSliders(false);
+				mActivity.doNotifCheck(true);
 			}
 		});
 		mRoot.findViewById(R.id.dim_check).setOnClickListener(new OnClickListener() {
@@ -189,7 +194,13 @@ public class SettingsFragment extends MyFragment {
 		
 		mRoot.findViewById(R.id.preview_hack_stuff).setVisibility(
 				mPrefs.getBoolean(MainActivity.P_NEW_CAMERA, false) ? View.GONE : View.VISIBLE );
-	
+
+
+		String message = "Continue flashing on app close";
+		if (!mActivity.checkNotificationsEnabled()) {
+			message += "\nNOTIFICATIONS DISABLED!";
+		}
+		((CheckBox)mRoot.findViewById(R.id.persist_check)).setText(message);
 	}
 	
 	public static int helpVisibility(Context context) {

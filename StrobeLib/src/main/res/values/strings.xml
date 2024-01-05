@@ -34,7 +34,9 @@
         \n - It might not work right
         \n\nSo if you\'re interested, click the link below. You always have the choice to leave the beta if you get annoyed.</string>
         
-    <string name="new_version_text">- Updated to newest version of android apk (so it\'ll stay in the play store). See you in 2025 lol
+    <string name="new_version_text">- Fixed flashing with app closed on newer phones
+        \n- Allowed Max Frequency slider to go to 1000
+        \n- Added Strobe Offset Frequency to Tacho
         </string>
         
     <string name="music_battery">This uses <i><b>a lot</b></i> of power. Connect your charger if you are going to use this for more than 10 minutes.</string>
@@ -58,6 +60,8 @@
         buttons did not rank in the top 5.
         \n\nIf your spinning object is not making a sound, you may have to intervene. An example would be sticking a playing card into a fan in order
         to make a repeating sound.
+        \n\nThe Strobe Frequency Offset allows you to flash at a slightly different frequency than your spinning object such that it will appear to slowly spin.
+        This value is only applied when you select a frequency (it doesn\'t affect detection).
         </string>
         
     <string name="email_body">

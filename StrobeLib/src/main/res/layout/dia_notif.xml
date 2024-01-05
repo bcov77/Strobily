@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:text="Strobily (ideally) shows you a notification when it\'s running in the background so you can easily stop it. Android now requires you to allow this behavior."
+        android:textColor="#FFC0C0C0"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:gravity="center_horizontal"
+        android:layout_gravity="center_horizontal"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:text="Strobily will only ever notify you if it is running."
+        android:textColor="#FFC0C0C0"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:gravity="center_horizontal"
+        android:layout_gravity="center_horizontal" />
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#FFC0C0C0"
+        android:text="Don't show this again"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:id="@+id/dont_show_this"
+        />
+    <View
+        android:layout_width="0dp"
+        android:layout_height="12dp"
+        />
+
+</LinearLayout>

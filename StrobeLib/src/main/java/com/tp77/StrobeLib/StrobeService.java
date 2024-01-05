@@ -147,9 +147,13 @@ public class StrobeService extends Service {
 	private static final String mNotifChannelId = "Strobily_channel";
 	
 	public void goForeground() {
+		if ( ! mPrefs.getBoolean(MainActivity.P_NEEDS_NOTIF, false ) ) {
+			Editor e = mPrefs.edit();
+			e.putBoolean(MainActivity.P_NEEDS_NOTIF, true);
+			e.commit();
+		}
 		Intent intent = new Intent(this, MainActivity.class);
 		intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-
 		String str = "Currently flashing";
 		if (mTorch) {
 			str = "Torch enabled";
@@ -175,7 +179,7 @@ public class StrobeService extends Service {
 		
 	    Notification notification  = builder
 	            .setContentIntent(PendingIntent.getActivity(
-	    				this, 0, intent, 0))
+	    				this, 0, intent, PendingIntent.FLAG_IMMUTABLE))
 	            .setSmallIcon(R.drawable.ic_notif)
 	            .setWhen( System.currentTimeMillis())
 	            .setContentTitle("Strobily")

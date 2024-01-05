@@ -8,8 +8,8 @@ android {
         applicationId "com.tp77.StrobeAd"
         minSdkVersion 14
         targetSdkVersion 33
-        versionCode 54
-        versionName '2.2.5'
+        versionCode 55
+        versionName '2.2.6'
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 

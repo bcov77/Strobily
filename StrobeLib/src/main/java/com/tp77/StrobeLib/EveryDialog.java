@@ -1,5 +1,6 @@
 package com.tp77.StrobeLib;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -15,6 +16,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.app.ActivityCompat;
 import android.support.v42.app.DialogFragment;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -34,6 +36,7 @@ public class EveryDialog extends DialogFragment {
 	public static final int N_UPDATE = 3;
 	public static final int N_BETA = 4;
 	public static final int N_RATE = 5;
+	public static final int N_NOTIF = 6;
 	
 	private MainActivity mActivity = null;
 	private View mRoot = null;
@@ -48,7 +51,8 @@ public class EveryDialog extends DialogFragment {
 		R.layout.dia_legend,
 		R.layout.dia_update,
 		R.layout.dia_beta,
-		R.layout.dia_rate
+		R.layout.dia_rate,
+			R.layout.dia_notif
 	};
 	
 	private static EveryDialog getInstance(int number) {
@@ -321,6 +325,30 @@ public class EveryDialog extends DialogFragment {
 				}
 			});
 			break;
+
+			case N_NOTIF:
+				builder.setTitle("Enable running notifications?");
+
+				final CheckBox dont_show_box = (CheckBox)mRoot.findViewById(R.id.dont_show_this);
+				builder.setPositiveButton("Enable", new Dialog.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						ActivityCompat.requestPermissions(mActivity, new String[]{Manifest.permission.POST_NOTIFICATIONS},
+								MainActivity.REQUEST_NOTIFICATION_PERMISSION);
+					}
+				});
+
+				builder.setNegativeButton("Cancel", new Dialog.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						if ( dont_show_box.isChecked() ) {
+							Editor ed = mPrefs.edit();
+							ed.putBoolean(MainActivity.P_TRIED_NOTIF, true);
+							MainActivity.apply(ed);
+						}
+					}
+				});
+				break;
 
 
 		}

@@ -14,6 +14,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.graphics.LightingColorFilter;
@@ -38,6 +39,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.ScrollView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,6 +51,7 @@ public class TachoFragment extends MyFragment{
 	private static final int BIN_SIZE = 8;
 	
 	private static final String P_FREQ_FAMILIES = "freqFamilies";
+	private static final String P_OFFSET = "offset";
 	
 	private static final int FULL = 0;
 	private static final int HIGH = 1;
@@ -250,7 +253,31 @@ public class TachoFragment extends MyFragment{
 				} 
 			}
 		});
-		
+
+
+		SeekBar sb = (SeekBar)v.findViewById(R.id.offset_seek_bar);
+		sb.setMax(2000 + 200);
+		sb.setProgress(getOffsetInt(mActivity));
+		sb.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+			@Override
+			public void onProgressChanged(SeekBar seekBar, int progress,
+										  boolean fromUser) {
+
+				Editor e = mPrefs.edit();
+				e.putInt(P_OFFSET, progress);
+				MainActivity.apply(e);
+
+				updateSliders(false);
+			}
+			@Override
+			public void onStartTrackingTouch(SeekBar seekBar) {
+			}
+			@Override
+			public void onStopTrackingTouch(SeekBar seekBar) {
+			}
+		});
+
+
 		View v2 = v.findViewById(R.id.help_button);
 		v2.setOnClickListener(new OnClickListener() {
 			@Override
@@ -262,8 +289,35 @@ public class TachoFragment extends MyFragment{
 		
 		return v;
 	}
-	
-	
+
+	public static int getOffsetInt(Context context) {
+		return PreferenceManager.getDefaultSharedPreferences(context).getInt(P_OFFSET, 1000 + 100);
+	}
+
+	public static double getOffsetHz(Context context) {
+		return offsetValueToHz(getOffsetInt(context));
+	}
+	private static double offsetValueToHz(int value) {
+		int buffer = 100;
+		// its 2001 wide
+		if ( value >= 1000+buffer - buffer && value <= 1000 + buffer + buffer ) {
+			return 0;
+		}
+		boolean negative = value < 1000 + buffer;
+		if (negative) {
+			value = 1000 - value;
+		} else {
+			value = value - 1000 - buffer - buffer;
+		}
+		// 1 --> 0.01 // log10(0.01) = 2
+		// 1000 --> 15 // log10(15) = 1.1761
+		double exponent = (value - 1.0) / 999.0 * (1.1761 + 2) - 2;
+		double pre = Math.pow(10, exponent);
+		if (negative) {
+			pre *= -1;
+		}
+		return pre;
+	}
 	
 	
 	private void showFamilies(FreqFamily[] families) {
@@ -304,7 +358,12 @@ public class TachoFragment extends MyFragment{
 				b.setOnClickListener(new OnClickListener() {
 					@Override
 					public void onClick(View v) {
-						mFrequency = (float) freq;
+						double use_freq = freq;
+						use_freq += getOffsetHz(mActivity);
+						if (use_freq < 0.001 ) {
+							use_freq = 0.001;
+						}
+						mFrequency = (float) use_freq;
 						frequencyUpdate(true);
 						Editor e = mPrefs.edit();
 						e.putFloat(StrobeFragment.P_FREQUENCY, mFrequency);
@@ -659,7 +718,8 @@ public class TachoFragment extends MyFragment{
 		else
 			mActivity.updateIfRunning(flashes, true);
 	}
-	
+
+
 	@TargetApi(Build.VERSION_CODES.FROYO)
 	public void updateSliders(boolean fromMain) {
 		
@@ -733,8 +793,15 @@ public class TachoFragment extends MyFragment{
 		tv = (TextView)mRoot.findViewById(R.id.frequency_text);
 		tv.setText(String.format("%.03f", toUse));
 		tv.setTextSize(mUseRpm ? 26 : 30);
-		
-		
+
+		double offset_hz = getOffsetHz(mActivity);
+		if (mUseRpm) {
+			offset_hz *= 60;
+		}
+		String offset_text = String.format("%.3f", offset_hz) + " " + unit;
+		((TextView)mRoot.findViewById(R.id.offset_text)).setText(offset_text);
+
+
 	}
 	
 	
