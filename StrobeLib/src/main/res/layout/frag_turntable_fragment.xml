@@ -27,7 +27,7 @@
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
 		        android:padding="8dp"
-		        android:text="Which pattern did you choose?"
+		        android:text="Which pattern did you choose?  (Warning! Flashing!)"
 		        />
 		    
 		    <LinearLayout

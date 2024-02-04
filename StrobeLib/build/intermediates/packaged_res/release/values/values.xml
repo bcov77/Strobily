@@ -380,11 +380,19 @@
     <string name="hello">Hello World, StrobeActivity!</string>
     <string name="legend_first">
         This graph show what the app was doing during the past 100 flashes. The x-axis width is set so that it exactly
-        matches the frequency of the strobe. \n\n
-        If the graph is this color, the app is:
+        matches the frequency of the strobe.
+        \n\nThink of each row as 1 bar of music. The LED needs to turn fully-on and fully-off within 1 bar to keep up with the tempo.
+        If the tempo is too fast, the LED falls behind and isn\'t able to turn on and off before the next row starts.
+        \n\nPerfect performance will be a white vertical line. Diagonal lines mean it\'s not keeping up.
+        \n\nShow LED state -- The LED is:
     </string>
     <string name="music_battery">This uses <i><b>a lot</b></i> of power. Connect your charger if you are going to use this for more than 10 minutes.</string>
-    <string name="new_version_text">- Updated to newest version of android apk (so it\'ll stay in the play store). See you in 2025 lol
+    <string name="new_version_text">- Fixed flashing with app closed on newer phones
+        \n- Allowed Max Frequency slider to go to 1000
+        \n- Added Strobe Offset Frequency to Tacho
+        \n- Fixed flashing with app closed on old version of app
+        \n- Fixed some super-rare "app not responding" conditions
+        \n- Made Red "too fast" Hz more accurate
         </string>
     <string name="paid_link">https://play.google.com/store/apps/details?id=com.tp77.Strobe</string>
     <string name="tacho_help_1">This part of the app uses sound to identify the frequency of a spinning object. To use it, find a spinning
@@ -394,6 +402,8 @@
         buttons did not rank in the top 5.
         \n\nIf your spinning object is not making a sound, you may have to intervene. An example would be sticking a playing card into a fan in order
         to make a repeating sound.
+        \n\nThe Strobe Frequency Offset allows you to flash at a slightly different frequency than your spinning object such that it will appear to slowly spin.
+        This value is only applied when you select a frequency (it doesn\'t affect detection).
         </string>
     <string name="troubleshoot">If the strobe light isn\'t working for you, try these settings. DROID phones will almost definitely need the preview hack. The gentle
         strobe is new and is for phones whose drivers can be easily overwhelmed by LED commands.

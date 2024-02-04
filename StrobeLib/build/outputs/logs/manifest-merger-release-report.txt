@@ -1,11 +1,11 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml:2:1-17:12
-INJECTED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml:2:1-17:12
-INJECTED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml:2:1-17:12
+ADDED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml:2:1-18:12
+INJECTED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml:2:1-18:12
+INJECTED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml:2:1-18:12
 	package
 		INJECTED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml
-		ADDED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml:2:1-17:12
+		ADDED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml:2:1-18:12
 		INJECTED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml
 	android:versionName
 		ADDED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml:4:7-34
@@ -39,6 +39,10 @@ uses-permission#android.permission.FOREGROUND_SERVICE
 ADDED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml:14:4-75
 	android:name
 		ADDED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml:14:21-73
+uses-permission#android.permission.POST_NOTIFICATIONS
+ADDED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml:15:5-77
+	android:name
+		ADDED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml:15:22-74
 uses-sdk
 INJECTED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\Brian\AndroidStudioProjects\StrobeLib\StrobeLib\src\main\AndroidManifest.xml

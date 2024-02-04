@@ -28,6 +28,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v42.app.DialogFragment;
 import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -735,7 +736,8 @@ public class TachoFragment extends MyFragment{
 				
 				String str = mPrefs.getString(P_FREQ_FAMILIES, "");
 				
-				if (str.length() >= 0) {
+				if (str.length() > 0) {
+
 				
 					ObjectInputStream ois = null;
 					Externalizable res = null;

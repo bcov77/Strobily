@@ -741,57 +741,70 @@ public class MainActivity extends FragmentActivity {
 	    	apply(e);
 	    	setupCameraStuff();
 		}
-		if ( mAwaitingNewCamera ) return;
-		mAwaitingNewCamera = true;
-		tearDownCamera();
 
-		final MainActivity activity = this;
-		final StrobeService service = mService;
 
-		CameraManager camMan = (CameraManager)getSystemService(CAMERA_SERVICE);
+		Thread th = new Thread() {
+			@Override
+			public void run() {
+				if (mService != null && mService.isFlashReady() ) {
+					return;
+				}
 
-		// It needs to have a flash and preferably we want the back camera
-		String bestCameraId = null;
+				if (mAwaitingNewCamera) return;
+				mAwaitingNewCamera = true;
+				tearDownCamera();
 
-		try {
-			for(final String cameraId : camMan.getCameraIdList()){
-				CameraCharacteristics characteristics = null;
+				final MainActivity activity = MainActivity.this;
+				final StrobeService service = mService;
+
+				CameraManager camMan = (CameraManager) getSystemService(CAMERA_SERVICE);
+
+				// It needs to have a flash and preferably we want the back camera
+				String bestCameraId = null;
+
 				try {
-					characteristics = camMan.getCameraCharacteristics(cameraId);
-				} catch (Exception e) {
-					// sometimes throws RuntimeException
+					for (final String cameraId : camMan.getCameraIdList()) {
+						CameraCharacteristics characteristics = null;
+						try {
+							characteristics = camMan.getCameraCharacteristics(cameraId);
+						} catch (Exception e) {
+							// sometimes throws RuntimeException
+							e.printStackTrace();
+							continue;
+						}
+						boolean hasFlash = characteristics.get(CameraCharacteristics.FLASH_INFO_AVAILABLE);
+						if (!hasFlash) continue;
+						if (bestCameraId == null) {
+							bestCameraId = cameraId;
+						}
+						int cOrientation = characteristics.get(CameraCharacteristics.LENS_FACING);
+						if (cOrientation == CameraCharacteristics.LENS_FACING_BACK) {
+							bestCameraId = cameraId;
+							break;
+						}
+					}
+				} catch (CameraAccessException e) {
 					e.printStackTrace();
-					continue;
 				}
-				boolean hasFlash = characteristics.get(CameraCharacteristics.FLASH_INFO_AVAILABLE);
-				if ( ! hasFlash ) continue;
-				if ( bestCameraId == null ) {
-					bestCameraId = cameraId;
+
+				if (bestCameraId == null) {
+					toastOnUiThread(MainActivity.this, "No flash on device?", Toast.LENGTH_SHORT);
+					handleLedScreenPress(true, true);
+					mAwaitingNewCamera = false;
+					return;
 				}
-				int cOrientation = characteristics.get(CameraCharacteristics.LENS_FACING);
-				if(cOrientation == CameraCharacteristics.LENS_FACING_BACK) {
-					bestCameraId = cameraId;
-					break;
+
+				if (mService != null) {
+					mService.mWhichCamera = bestCameraId;
 				}
+
+				//		if ( ! mPrefs.getBoolean(P_OPEN_HACK, false) ) {
+				weJustGotCamera();
+				mAwaitingNewCamera = false;
 			}
-		} catch (CameraAccessException e) {
-			e.printStackTrace();
-		}
-
-		if ( bestCameraId == null ) {
-			toastOnUiThread(MainActivity.this, "No flash on device?", Toast.LENGTH_SHORT);
-			handleLedScreenPress(true, true);
-			mAwaitingNewCamera = false;
-			return;
-		}
-
-		if ( mService != null ) {
-			mService.mWhichCamera = bestCameraId;
-		}
-
-//		if ( ! mPrefs.getBoolean(P_OPEN_HACK, false) ) {
-		weJustGotCamera();
-		mAwaitingNewCamera = false;
+		};
+		th.setPriority(Thread.MAX_PRIORITY);
+		th.start();
 		return;
 //		}
 
@@ -1473,11 +1486,15 @@ public class MainActivity extends FragmentActivity {
 	    				tv.setVisibility(checkLag > 0 ? View.VISIBLE : View.GONE);
 	    				if (checkLag == 696969)
 	    					tv.setText("-- Hz");
-	    				else
-	    					tv.setText(Integer.toString(checkLag) + " Hz");
+	    				else {
+							long[] diagData = mService.doGetDiagnostics();
+							checkLag = (int)(DiagnosticFragment.doDataAnalysis(diagData, null));
+							tv.setText(Integer.toString(checkLag) + " Hz");
+						}
 
 //	    				((CheckBox)findViewById(R.id.torch_check)).setText(Integer.toString(mService.getDebugNumber()));
 	    			}
+
 	    			
 	    			
 	    			
@@ -1756,6 +1773,13 @@ public class MainActivity extends FragmentActivity {
 		if ( requestCode == REQUEST_NOTIFICATION_PERMISSION ) {
 			if (! selfPermissionGranted(Manifest.permission.POST_NOTIFICATIONS) ) {
 				Toast.makeText(this, "Fix this by allowing Strobily to show notifications in System Settings.", Toast.LENGTH_SHORT ).show();
+			} else {
+				if ( ! mPrefs.getBoolean(SettingsFragment.P_PREVIEW_HACK, false) ) {
+					Editor e = mPrefs.edit();
+					e.putBoolean(SettingsFragment.P_PERSIST, true);
+					e.commit();
+				}
+
 			}
 			updateSliders();
 		}

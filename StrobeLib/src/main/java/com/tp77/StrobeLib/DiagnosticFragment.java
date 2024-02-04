@@ -152,14 +152,14 @@ public class DiagnosticFragment extends MyFragment {
 			return;
 		long[] diagData = mActivity.mService.doGetDiagnostics();
 		dv.setData(diagData, mUseLedState);
-		doDataAnalysis(diagData);
+		doDataAnalysis(diagData, mRoot);
 	}
 	
 	
 	
 	// pulse width defined as middle of DI_ON to middle of DI_OFF
 	
-	private void doDataAnalysis(long[] diagData) {
+	public static float doDataAnalysis(long[] diagData, View root) {
 		
 		int pos = (int)diagData[DiagnosticView.DI_SIZE];
 		int number = 0;
@@ -177,7 +177,7 @@ public class DiagnosticFragment extends MyFragment {
 		}
 		
 		if (number <= 1)
-			return;
+			return 0;
 		
 		long pulseSum = 0;
 		long onoffSum = 0;
@@ -240,7 +240,7 @@ public class DiagnosticFragment extends MyFragment {
 		int correction = rejects - lags;
 
 		if ( flashes == 0 || numberOfFlashes == 0 ) {
-			return;
+			return 0;
 		}
 
 		if ( flashes == 0 ) {
@@ -267,11 +267,13 @@ public class DiagnosticFragment extends MyFragment {
 		float hz = (float)1000000/period;
 		
 
-		((TextView)mRoot.findViewById(R.id.actual_hz)).setText(String.format("%.1f Hz", hz));
-		((TextView)mRoot.findViewById(R.id.max_hz)).setText(String.format("%.1f Hz", maxHz));
-		((TextView)mRoot.findViewById(R.id.duty)).setText(String.format("%.1f%%", duty));
-		((TextView)mRoot.findViewById(R.id.duration)).setText(String.format("%.1f ms", pulseWidth/1000));
-		
+		if (root != null) {
+			((TextView) root.findViewById(R.id.actual_hz)).setText(String.format("%.1f Hz", hz));
+			((TextView) root.findViewById(R.id.max_hz)).setText(String.format("%.1f Hz", maxHz));
+			((TextView) root.findViewById(R.id.duty)).setText(String.format("%.1f%%", duty));
+			((TextView) root.findViewById(R.id.duration)).setText(String.format("%.1f ms", pulseWidth / 1000));
+		}
+		return hz;
 	}
 	
 

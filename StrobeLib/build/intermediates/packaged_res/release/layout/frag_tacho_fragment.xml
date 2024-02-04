@@ -130,6 +130,8 @@
 	        />
 	    
     </LinearLayout>
+
+
     
     
 	<View
@@ -139,8 +141,40 @@
 	    android:layout_marginTop="5dp"
        	android:layout_marginLeft="5dp"
        	android:layout_marginRight="5dp"
+		/>
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:textSize="14sp"
+		android:text="Strobe frequency offset:"
+		android:layout_marginTop="5dip"
+		android:layout_marginLeft="10dp"
+		/>
+
+	<SeekBar
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="30dip"
+		android:layout_marginRight="30dip"
+		android:id="@+id/offset_seek_bar"
+		/>
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center_horizontal"
+		android:id="@+id/offset_text"
+		android:layout_marginRight="5dp"
 	    />
-    
+
+	<View
+		android:layout_width="fill_parent"
+		android:layout_height="1dp"
+		android:background="#FF00C0C0"
+		android:layout_marginTop="5dp"
+		android:layout_marginLeft="5dp"
+		android:layout_marginRight="5dp"
+		/>
+
     <ScrollView
         android:layout_height="0dp"
         android:layout_width="fill_parent"

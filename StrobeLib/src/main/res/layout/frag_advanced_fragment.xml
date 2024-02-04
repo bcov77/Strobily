@@ -27,6 +27,17 @@
 	        android:layout_marginLeft="10dp"
 	        android:id="@+id/rpm_check"
 	        />
+
+		<TextView
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:gravity="center_horizontal"
+			android:textColor="#FF808080"
+			android:textSize="12sp"
+			android:layout_marginLeft="10dp"
+			android:layout_marginRight="10dp"
+			android:text="(RPM is the same as BPM)"
+			/>
 	    
 	    <CheckBox
 	        android:layout_width="wrap_content"

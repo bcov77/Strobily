@@ -144,7 +144,7 @@ public class StrobeService extends Service {
 		return START_STICKY;
 	}
 	
-	private static final String mNotifChannelId = "Strobily_channel";
+	public static final String mNotifChannelId = "Strobily_channel";
 	
 	public void goForeground() {
 		if ( ! mPrefs.getBoolean(MainActivity.P_NEEDS_NOTIF, false ) ) {
@@ -218,9 +218,21 @@ public class StrobeService extends Service {
 		mFlashing = false;
 		mTorch = false;
 		stopThreads();
+		long time = System.currentTimeMillis();
 		kill();
-		while (!i_am_the_strober && mStroberThread != null && mStroberThread.isAlive())
+		while (!i_am_the_strober && mStroberThread != null && mStroberThread.isAlive()) {
 			kill();
+			if ( System.currentTimeMillis() - time >= 3000 ) {
+				if ( mServiceException != null ) {
+					Message msg = new Message();
+					Bundle bundle = new Bundle();
+					bundle.putString("Toast", "Error: Unable to stop strober. Camera probably needs restart");
+					msg.setData(bundle);
+					mServiceException.sendMessage(msg);
+				}
+				break;
+			}
+		}
 
 		Editor e = mPrefs.edit();
 		e.putBoolean(MainActivity.P_WIDGET_RUNNING, false);

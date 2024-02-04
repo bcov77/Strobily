@@ -3,18 +3,22 @@ package com.tp77.StrobeLib;
 import java.lang.reflect.Method;
 
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.hardware.Camera;
 import android.os.Binder;
+import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
+import android.preference.PreferenceManager;
 import android.support.v42.app.NotificationCompat;
 
 public class StrobeLibService extends Service {
@@ -106,22 +110,44 @@ public class StrobeLibService extends Service {
 	}
 	
 	public void goForeground() {
-		
-	    NotificationManager notificationManager = (NotificationManager)this.getSystemService(Context.NOTIFICATION_SERVICE);
-	    NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
 
+		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+		if ( ! mPrefs.getBoolean(MainActivity.P_NEEDS_NOTIF, false ) ) {
+			SharedPreferences.Editor e = mPrefs.edit();
+			e.putBoolean(MainActivity.P_NEEDS_NOTIF, true);
+			e.commit();
+		}
 		Intent intent = new Intent(this, StrobeLibActivity.class);
 		intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-		
-	    Notification notification  = builder
-	            .setContentIntent(PendingIntent.getActivity(
-	    				this, 0, intent, 0))
-	            .setSmallIcon(R.drawable.ic_notif)
-	            .setWhen( System.currentTimeMillis())
-	            .setContentTitle("Strobe")
-	            .setContentText("Running...").build();
-	    notificationManager.notify(2, notification);
-		
+		String str = "Old app flashing";
+
+		NotificationManager notificationManager = (NotificationManager)this.getSystemService(Context.NOTIFICATION_SERVICE);
+
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+			int importance = NotificationManager.IMPORTANCE_HIGH;
+			NotificationChannel channel = notificationManager.getNotificationChannel(StrobeService.mNotifChannelId);
+			if (channel == null) {
+				channel = new NotificationChannel(StrobeService.mNotifChannelId, "Strobily", NotificationManager.IMPORTANCE_MAX);
+				notificationManager.createNotificationChannel(channel);
+			}
+		}
+
+
+		android.support.v4.app.NotificationCompat.Builder builder = new android.support.v4.app.NotificationCompat.Builder(this, StrobeService.mNotifChannelId);
+
+
+		Notification notification  = builder
+				.setContentIntent(PendingIntent.getActivity(
+						this, 0, intent, PendingIntent.FLAG_IMMUTABLE))
+				.setSmallIcon(R.drawable.ic_notif)
+				.setWhen( System.currentTimeMillis())
+				.setContentTitle("Strobily")
+				.setPriority(Notification.PRIORITY_MAX)
+				.setContentText(str).build();
+//	    notificationManager.notify(N_FOREGROUND, notification);
+
+		startForeground(2, notification);
+
 		mForeground = true;
 	}
 	

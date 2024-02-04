@@ -37,6 +37,9 @@
     <string name="new_version_text">- Fixed flashing with app closed on newer phones
         \n- Allowed Max Frequency slider to go to 1000
         \n- Added Strobe Offset Frequency to Tacho
+        \n- Fixed flashing with app closed on old version of app
+        \n- Fixed some super-rare "app not responding" conditions
+        \n- Made Red "too fast" Hz more accurate
         </string>
         
     <string name="music_battery">This uses <i><b>a lot</b></i> of power. Connect your charger if you are going to use this for more than 10 minutes.</string>
@@ -97,8 +100,11 @@
     
     <string name="legend_first">
         This graph show what the app was doing during the past 100 flashes. The x-axis width is set so that it exactly
-        matches the frequency of the strobe. \n\n
-        If the graph is this color, the app is:
+        matches the frequency of the strobe.
+        \n\nThink of each row as 1 bar of music. The LED needs to turn fully-on and fully-off within 1 bar to keep up with the tempo.
+        If the tempo is too fast, the LED falls behind and isn\'t able to turn on and off before the next row starts.
+        \n\nPerfect performance will be a white vertical line. Diagonal lines mean it\'s not keeping up.
+        \n\nShow LED state -- The LED is:
     </string>
   
 </resources>
