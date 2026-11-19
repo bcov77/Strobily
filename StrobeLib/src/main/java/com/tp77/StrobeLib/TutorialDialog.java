@@ -361,7 +361,7 @@ public class TutorialDialog extends DialogFragment {
         if (doSet) {
 			group.check(radio_ids[setting]);
 		} else {
-			if ( mPrefs.getBoolean(MainActivity.P_NEW_CAMERA, false) ) {
+			if ( mPrefs.getBoolean(MainActivity.P_NEW_CAMERA, true) ) {
 				setFromRadio(group, M_NEW_CAMERA, true);
 			} else {
 				if ( mPrefs.getBoolean(SettingsFragment.P_PREVIEW_HACK, false ) ) {

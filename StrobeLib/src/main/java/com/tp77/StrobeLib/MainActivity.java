@@ -1449,7 +1449,7 @@ public class MainActivity extends FragmentActivity {
 
     private void finishOutputChange() {
 		if (useLed() && mService != null) {
-			if ( ! mService.isFlashReady()) {
+			if ( ! mService.isFlashReady() && ! mAwaitingNewCamera) {
 				Toast.makeText(this, "Camera issues.\nTry restarting app", Toast.LENGTH_SHORT).show();
 				setUseLed(false);
 				setUseScreen(true);
