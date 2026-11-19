@@ -266,11 +266,17 @@ final class AuxAudioOutput {
 
     private boolean requestFocus(Session current) {
         current.focusListener = change -> onMain(() -> {
-            if (session == current && change < AudioManager.AUDIOFOCUS_GAIN) {
+            // A transient duck request (e.g. our own foreground-notification sound when
+            // backgrounding) must not stop or quiet AUX. Only real focus loss does.
+            boolean lost = change == AudioManager.AUDIOFOCUS_LOSS
+                    || change == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT;
+            if (session == current && lost) {
                 interrupt("AUX stopped: audio focus lost");
             }
         });
         if (Build.VERSION.SDK_INT >= 26) {
+            // willPauseWhenDucked tells the framework to hand us AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK
+            // instead of silently attenuating our stream; we then deliberately ignore it above.
             current.focusRequest = new AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN_TRANSIENT)
                     .setAudioAttributes(attributes).setWillPauseWhenDucked(true)
                     .setOnAudioFocusChangeListener(current.focusListener, main).build();
