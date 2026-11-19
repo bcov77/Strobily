@@ -14,8 +14,12 @@ android {
         versionCode 57
         versionName '2.2.8'
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.tp77.Strobe.BrightnessInstrumentation"
 
+    }
+    // Reuse the device checks against the app variant used for development/testing.
+    sourceSets {
+        androidTest.java.srcDirs = ['../Strobe/src/androidTest/java']
     }
     buildTypes {
         release {
@@ -29,6 +33,7 @@ android {
 }
 
 dependencies {
+    androidTestImplementation project(':PASupportV4')
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(':StrobeLib')
     implementation 'com.android.support:support-v4:28.0.0'

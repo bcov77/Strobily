@@ -112,11 +112,24 @@ public class StrobeService extends Service {
     // Stored as percentages; JNI receives hardware levels. Null means live global brightness.
     public int[] mBrightnesses = null;
     private int mMaximumBrightness = 1;
+    private AuxAudioOutput mAuxAudio;
+    private final Handler mAuxHandler = new Handler(android.os.Looper.getMainLooper());
+    private volatile boolean mAuxOwnsBurst;
+    private boolean mNativeBurstFinished;
+    private boolean mAuxBurstFinished;
+    private boolean mAuxWasSelected;
     private final SharedPreferences.OnSharedPreferenceChangeListener mBrightnessListener =
             (preferences, key) -> {
                 if (StrobeFragment.P_BRIGHTNESS.equals(key)
                         || StrobeFragment.P_CUSTOM_BRIGHTNESS.equals(key)
-                        || SettingsFragment.P_SHOW_BRIGHTNESS.equals(key)) {
+                        || SettingsFragment.P_SHOW_BRIGHTNESS.equals(key)
+                        || AdvancedFragment.P_SHOW_AUX.equals(key)
+                        || AdvancedFragment.P_AUX_HIGH.equals(key)
+                        || AdvancedFragment.P_AUX_LOW.equals(key)
+                        || AdvancedFragment.P_AUX_STEREO.equals(key)
+                        || AdvancedFragment.P_AUX_MAX_VOLUME.equals(key)
+                        || AdvancedFragment.P_AUX_HEADPHONES.equals(key)
+                        || MainActivity.P_USE_AUX.equals(key)) {
                     settingsUpdate();
                 }
             };
@@ -152,6 +165,14 @@ public class StrobeService extends Service {
 		mTheIBinder = new LocalBinder();
 		
 		mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        mAuxAudio = new AuxAudioOutput(this, new AuxAudioOutput.Listener() {
+            @Override public void onStarted() { if (mForeground) goForeground(); }
+            @Override public void onFinished() { auxBurstFinished(); }
+            @Override public void onInterrupted(String message) {
+                Toast.makeText(StrobeService.this, message, Toast.LENGTH_LONG).show();
+                auxBurstFinished();
+            }
+        });
         mPrefs.registerOnSharedPreferenceChangeListener(mBrightnessListener);
 		mPowerManager = (PowerManager) getSystemService(POWER_SERVICE);
 		mWakeLock = mPowerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "Background flasher");
@@ -161,6 +182,7 @@ public class StrobeService extends Service {
 	@Override
 	public void onDestroy() {
         mPrefs.unregisterOnSharedPreferenceChangeListener(mBrightnessListener);
+        mAuxAudio.close();
 		mMusicing = false;
 		stopTheStrober(false);
 		endForeground();
@@ -229,6 +251,9 @@ public class StrobeService extends Service {
 		
 	    if (Build.VERSION.SDK_INT >= 34) {
             int types = android.content.pm.ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE;
+            if (isAuxPlaying()) {
+                types |= android.content.pm.ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK;
+            }
             if (mMusicing) {
                 types |= android.content.pm.ServiceInfo.FOREGROUND_SERVICE_TYPE_MICROPHONE;
             }
@@ -244,6 +269,7 @@ public class StrobeService extends Service {
 		if (!mForeground)
 			return;
 		stopForeground(true);
+        mForeground = false;
 	}
 	
 	public boolean isFlashReady() {
@@ -262,6 +288,8 @@ public class StrobeService extends Service {
 	
 	public void stopTheStrober(boolean i_am_the_strober) {
 
+        mAuxOwnsBurst = false;
+        if (mAuxAudio != null) mAuxAudio.stop();
 		Log.d("StobeService", "Stopping strober");
 		mFlashing = false;
 		mTorch = false;
@@ -390,7 +418,43 @@ public class StrobeService extends Service {
     	}
 	}
 	
+    public boolean isAuxPlaying() {
+        return mAuxAudio != null && mAuxAudio.isPlaying();
+    }
+
+    public void noteAuxVolumeChange() {
+        if (mAuxAudio != null) mAuxAudio.noteManualVolumeChange();
+    }
+
+    private boolean auxSelected() {
+        return mPrefs.getBoolean(AdvancedFragment.P_SHOW_AUX, false)
+                && mPrefs.getBoolean(MainActivity.P_USE_AUX, false);
+    }
+
+    private void updateAuxSettings() {
+        if (mAuxAudio == null) return;
+        Runnable settings = () -> {
+            boolean enabled = auxSelected();
+            if (enabled && mFlashing && !mTorch && !mLoop && (!mAuxOwnsBurst || !mAuxWasSelected)) {
+                mAuxOwnsBurst = true;
+                mAuxBurstFinished = false;
+            }
+            mAuxWasSelected = enabled;
+            int audioBrightness = mPrefs.getBoolean(SettingsFragment.P_SHOW_BRIGHTNESS, true)
+                    && mPrefs.getBoolean(StrobeFragment.P_CUSTOM_BRIGHTNESS, false)
+                    ? mPrefs.getInt(StrobeFragment.P_BRIGHTNESS, 100) : 100;
+            mAuxAudio.setSettings(enabled, mPrefs.getInt(AdvancedFragment.P_AUX_HIGH, 100),
+                    mPrefs.getInt(AdvancedFragment.P_AUX_LOW, 0), mPrefs.getInt(AdvancedFragment.P_AUX_STEREO, 1),
+                    mPrefs.getBoolean(AdvancedFragment.P_AUX_MAX_VOLUME, true),
+                    mPrefs.getBoolean(AdvancedFragment.P_AUX_HEADPHONES, true), audioBrightness);
+            if (!enabled) auxBurstFinished();
+        };
+        if (android.os.Looper.myLooper() == mAuxHandler.getLooper()) settings.run();
+        else mAuxHandler.post(settings);
+    }
+
 	public void settingsUpdate() {
+        updateAuxSettings();
 		boolean useLed = mPrefs.getBoolean(MainActivity.P_USE_LED, true);
 		boolean useScreen = mPrefs.getBoolean(MainActivity.P_USE_SCREEN, false);
 		int lateThreshold = AdvancedFragment.lateThreshold(this);
@@ -523,6 +587,18 @@ public class StrobeService extends Service {
 		}
 
 		mFlashes = flashes;
+        final int[] auxDurations = flashes.clone();
+        final boolean auxFinite = auxSelected() && flashing && !torch && !loop;
+        // All AUX lifecycle changes (including music-worker updates) are serialized on main.
+        Runnable auxUpdate = () -> {
+            mAuxOwnsBurst = auxFinite;
+            mNativeBurstFinished = false;
+            mAuxBurstFinished = !auxFinite;
+            updateAuxSettings();
+            mAuxAudio.setPlayback(auxDurations, flashing, torch, loop);
+        };
+        if (android.os.Looper.myLooper() == mAuxHandler.getLooper()) auxUpdate.run();
+        else mAuxHandler.post(auxUpdate);
 		update(mFlashes, levels, mLoop, mFlashing, mTorch);
 		
 		if (mFlashing && mPrefs.getBoolean(AdvancedFragment.P_FULL_CPU, false))
@@ -570,15 +646,34 @@ public class StrobeService extends Service {
 		}
 	};
 	
-	private void burstDone(boolean fakeParameter) {
-		Editor e = mPrefs.edit();
-		e.putBoolean(MainActivity.P_WIDGET_RUNNING, false);
-		MainActivity.apply(e);
-		if (mBound && mBurstDoner != null) {
-			mBurstDoner.sendEmptyMessage(0);
-		}
-	}
-	
+    private void auxBurstFinished() {
+        if (!mAuxOwnsBurst) return;
+        mAuxBurstFinished = true;
+        if (mNativeBurstFinished) finishBurst();
+    }
+
+    private void burstDone(boolean fakeParameter) {
+        mAuxHandler.post(() -> {
+            if (!mFlashing || mLoop || mTorch) return;
+            if (mAuxOwnsBurst) {
+                mNativeBurstFinished = true;
+                if (!mAuxBurstFinished) return;
+            }
+            finishBurst();
+        });
+    }
+
+    private void finishBurst() {
+        mAuxOwnsBurst = false;
+        mAuxAudio.stop();
+        mFlashing = false;
+        if (!mTorch && !mMusicing) setWakeLock(false);
+        Editor e = mPrefs.edit();
+        e.putBoolean(MainActivity.P_WIDGET_RUNNING, false);
+        MainActivity.apply(e);
+        if (mBound && mBurstDoner != null) mBurstDoner.sendEmptyMessage(0);
+    }
+
 	private void sendScreenState(boolean screenOn) {
 		if (mBound && mScreenPost != null) {
 			mScreenPost.sendEmptyMessage(screenOn ? StrobeLibActivity.SCREEN_ON : StrobeLibActivity.SCREEN_OFF);
@@ -595,8 +690,14 @@ public class StrobeService extends Service {
 	public boolean onUnbind(Intent intent) {
 		super.onUnbind(intent);
 		mBound = false;
-		return false;
+		return true;
 	}
+
+    @Override
+    public void onRebind(Intent intent) {
+        super.onRebind(intent);
+        mBound = true;
+    }
 	
 	
 	

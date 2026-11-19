@@ -90,18 +90,20 @@ public class BrightnessInstrumentation extends Instrumentation {
             preferences = PreferenceManager.getDefaultSharedPreferences(getTargetContext());
             String[] keys = {StrobeFragment.P_BRIGHTNESS, StrobeFragment.P_CUSTOM_BRIGHTNESS,
                     SettingsFragment.P_SHOW_BRIGHTNESS, MainActivity.P_NEW_CAMERA,
-                    MainActivity.P_USE_LED, MainActivity.P_USE_SCREEN};
+                    MainActivity.P_USE_LED, MainActivity.P_USE_SCREEN, MainActivity.P_USE_AUX};
             Map<String, ?> all = preferences.getAll();
             for (String key : keys) saved.put(key, all.get(key));
             preferences.edit().putBoolean(MainActivity.P_NEW_CAMERA, true)
                     .putBoolean(MainActivity.P_USE_LED, true)
-                    .putBoolean(MainActivity.P_USE_SCREEN, false).commit();
+                    .putBoolean(MainActivity.P_USE_SCREEN, false).putBoolean(MainActivity.P_USE_AUX, false).commit();
             brightness(100, true, true);
             Intent launch = new Intent(getTargetContext(), MainActivity.class);
             launch.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             activity = (MainActivity)startActivitySync(launch);
             waitFor(() -> activity.mService != null && activity.mService.mWhichCamera != null
                     && activity.mService.isFlashReady(), "Camera/service did not become ready");
+            AuxOutputChecks.run(this, activity, this::passed);
+            com.tp77.StrobeLib.AuxAudioChecks.run(this, activity, this::passed);
             PatternBrightnessChecks.run(this, activity, this::passed);
             camera = activity.mService.mWhichCamera;
             manager = (CameraManager)getTargetContext().getSystemService("camera");

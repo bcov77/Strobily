@@ -126,6 +126,7 @@ public class MainActivity extends FragmentActivity {
 	public static final String P_WHICH_SCREEN = "whichScreen";
 	public static final String P_USE_LED = "useLed";
 	public static final String P_USE_SCREEN = "useScreen";
+    public static final String P_USE_AUX = "useAux";
 	
 	public static final String P_TORCH_ON = "torchOn";
 	public static final String P_WIDGET_RUNNING = "widgetRunning";
@@ -349,6 +350,14 @@ public class MainActivity extends FragmentActivity {
 		
 		
 		
+        findViewById(R.id.aux_check).setOnClickListener(new OnClickListener() {
+            @Override public void onClick(View v) {
+                apply(mPrefs.edit().putBoolean(P_USE_AUX, !useAux()));
+                ensureOutputSelected();
+                finishOutputChange();
+            }
+        });
+
 		findViewById(R.id.torch_check).setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -376,7 +385,7 @@ public class MainActivity extends FragmentActivity {
 			}
 		});
 		
-		if (!useLed() && !useScreen()) {	// not really sure how this happens
+		if (!useLed() && !useScreen() && !useAux()) {
 //			setUseLed(true);
 //			setLedScreenCheck();
 			handleLedScreenPress(false, true);
@@ -532,7 +541,7 @@ public class MainActivity extends FragmentActivity {
 		
 		boolean persistent = mPrefs.getBoolean(SettingsFragment.P_PERSIST, true);
 		
-		if (mService == null || !persistent || !useLed() 
+		if (mService == null || !persistent || (!useLed() && !mService.isAuxPlaying())
 				|| !(mService.mFlashing || mService.mTorch || mService.mMusicing)) {
 			Camera c = null;
 			if (mService != null) {
@@ -578,6 +587,23 @@ public class MainActivity extends FragmentActivity {
     	int keyCode = key.getKeyCode();
     	int action = key.getAction();
     	int repeatCount = key.getRepeatCount();
+
+        if ((keyCode == KeyEvent.KEYCODE_VOLUME_DOWN || keyCode == KeyEvent.KEYCODE_VOLUME_UP)
+                && mService != null && mService.isAuxPlaying()
+                && mPrefs.getBoolean(AdvancedFragment.P_AUX_VOLUME_KEYS, false)) {
+            if (action == KeyEvent.ACTION_DOWN || action == KeyEvent.ACTION_MULTIPLE) {
+                mService.noteAuxVolumeChange();
+                android.media.AudioManager audio = (android.media.AudioManager)getSystemService(AUDIO_SERVICE);
+                int count = action == KeyEvent.ACTION_MULTIPLE ? repeatCount : 1;
+                for (int i = 0; i < count; i++) {
+                    audio.adjustStreamVolume(android.media.AudioManager.STREAM_MUSIC,
+                            keyCode == KeyEvent.KEYCODE_VOLUME_UP ? android.media.AudioManager.ADJUST_RAISE
+                                    : android.media.AudioManager.ADJUST_LOWER,
+                            android.media.AudioManager.FLAG_SHOW_UI);
+                }
+            }
+            return true;
+        }
     	
     	MyFragment mVolumeHandler = mFragments[mPager.getCurrentItem()];
     	
@@ -1348,6 +1374,23 @@ public class MainActivity extends FragmentActivity {
     }
     
     
+    public boolean useAux() {
+        return mPrefs.getBoolean(AdvancedFragment.P_SHOW_AUX, false)
+                && mPrefs.getBoolean(P_USE_AUX, false);
+    }
+
+    private void ensureOutputSelected() {
+        if (!useLed() && !useScreen() && !useAux()) setUseLed(true);
+    }
+
+    public void updateAuxMode() {
+        if (!mPrefs.getBoolean(AdvancedFragment.P_SHOW_AUX, false)) {
+            apply(mPrefs.edit().putBoolean(P_USE_AUX, false));
+        }
+        ensureOutputSelected();
+        finishOutputChange();
+    }
+
     public void setUseScreen(boolean useIt) {
     	Editor e = mPrefs.edit();
     	e.putBoolean(P_USE_SCREEN, useIt);
@@ -1379,6 +1422,9 @@ public class MainActivity extends FragmentActivity {
     		public void run() {
     	    	((CheckBox)findViewById(R.id.led_check)).setChecked(useLed());
     	    	((CheckBox)findViewById(R.id.screen_check)).setChecked(useScreen());
+                ((CheckBox)findViewById(R.id.aux_check)).setChecked(useAux());
+                findViewById(R.id.aux_check).setVisibility(!mHidden
+                        && mPrefs.getBoolean(AdvancedFragment.P_SHOW_AUX, false) ? View.VISIBLE : View.GONE);
     		}
     	});
     }
@@ -1387,14 +1433,21 @@ public class MainActivity extends FragmentActivity {
 		boolean useLed = useLed();
 		boolean useScreen = useScreen();
 		
-		if (ledPressed) {
-			setUseScreen(true);
-			setUseLed(!useLed && ! forced);
-		} else {
-			setUseScreen(!useScreen && ! forced);
-			setUseLed(true);
-		}
-		
+        if (!forced && mPrefs.getBoolean(AdvancedFragment.P_SHOW_AUX, false)) {
+            if (ledPressed) setUseLed(!useLed);
+            else setUseScreen(!useScreen);
+            ensureOutputSelected();
+        } else if (ledPressed) {
+            setUseScreen(true);
+            setUseLed(!useLed && !forced);
+        } else {
+            setUseScreen(!useScreen && !forced);
+            setUseLed(true);
+        }
+        finishOutputChange();
+    }
+
+    private void finishOutputChange() {
 		if (useLed() && mService != null) {
 			if ( ! mService.isFlashReady()) {
 				Toast.makeText(this, "Camera issues.\nTry restarting app", Toast.LENGTH_SHORT).show();
@@ -1415,6 +1468,8 @@ public class MainActivity extends FragmentActivity {
 		hideV(R.id.torch_check, true);
 		hideV(R.id.led_check, true);
 		hideV(R.id.screen_check, true);
+        findViewById(R.id.aux_check).setVisibility(!mHidden
+                && mPrefs.getBoolean(AdvancedFragment.P_SHOW_AUX, false) ? View.VISIBLE : View.GONE);
 		hideV(R.id.top_divider, false);
 		hideV(R.id.upper_divider, false);
 		hideV(R.id.title_scroller, false);

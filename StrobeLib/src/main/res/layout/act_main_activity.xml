@@ -72,29 +72,33 @@
 	            android:id="@+id/torch_check"
 	            />
 	        
-	        <View
-	            android:layout_height="0dp"
-	            android:layout_width="0dp"
-	            android:layout_centerHorizontal="true"
-	            android:id="@+id/center"
-	            />
-	        
-	        <CheckBox
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:layout_toLeftOf="@+id/center"
-	            android:text="LED"
-	            android:id="@+id/led_check"
-	            />
-	        
-	        <CheckBox
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:layout_toRightOf="@+id/center"
-	            android:text="Screen"
-	            android:id="@+id/screen_check"
-	            />
-	        
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/led_check"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="LED" />
+
+            <CheckBox
+                android:id="@+id/screen_check"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Screen" />
+
+            <CheckBox
+                android:id="@+id/aux_check"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:text="@string/aux_output" />
+        </LinearLayout>
+
 	        <CheckBox
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"

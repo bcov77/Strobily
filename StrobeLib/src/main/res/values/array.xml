@@ -151,6 +151,12 @@
         <item>This adds a new tab to the app that allows you to assess the current performance of the LED.</item>
         <item>What is \"Show real-time duty\"?</item>
         <item>This will add red numbers to the Strobe page that show the actual duty cycle achieved by the app.</item>
+        <item>What is \"Show AUX mode\"</item>
+        <item>Imagine you\'re a DJ and you want to be able to control the lights on your stage. This is exactly the mode you want.
+            Instead of flashing your screen or your LED, this plays high and low voltages over your headphone jack. If you are that DJ
+            and this setting isn\'t working well. Try a different dongle, try maximizing the difference between the high and low voltages.
+            In my quick test, my dongle was only outputting +- 1V. You might need some kind of amplifier to help you get the signal to 5V or
+            whatever it is your control hardware needs.</item>
         <item>What is \"Use multi commands\"?</item>
         <item>Some phones don\'t listen when you tell them to turn off the LED. Enabling this will cause the app
             to repeatedly tell the phone to turn off the LED.</item>

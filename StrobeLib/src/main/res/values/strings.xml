@@ -34,12 +34,9 @@
         \n - It might not work right
         \n\nSo if you\'re interested, click the link below. You always have the choice to leave the beta if you get annoyed.</string>
         
-    <string name="new_version_text">- Fixed flashing with app closed on newer phones
-        \n- Allowed Max Frequency slider to go to 1000
-        \n- Added Strobe Offset Frequency to Tacho
-        \n- Fixed flashing with app closed on old version of app
-        \n- Fixed some super-rare "app not responding" conditions
-        \n- Made Red "too fast" Hz more accurate
+    <string name="new_version_text">- Updated API so Google Play will keep hosting
+        \n- Added Brightness option
+        \n- Added AUX mode
         </string>
         
     <string name="music_battery">This uses <i><b>a lot</b></i> of power. Connect your charger if you are going to use this for more than 10 minutes.</string>
@@ -113,4 +110,24 @@
     <string name="brightness_percent">%1$d%%</string>
     <string name="show_brightness_slider">Show brightness slider</string>
     <string name="custom_brightness">Custom brightness</string>
+    <string name="show_aux_mode">Show AUX mode</string>
+    <string name="show_aux_description">(drive external lights via aux)</string>
+    <string name="aux_options_title">AUX output options:</string>
+    <string name="aux_options_description">Control equipment connected to your phone via the headphone jack. Not all dongles work the same. Find one that passes DC current. Enable at bottom of screen</string>
+    <string name="aux_high_voltage">High voltage:</string>
+    <string name="aux_low_voltage">Low voltage:</string>
+    <string name="aux_voltage_min">-1</string>
+    <string name="aux_voltage_max">+1</string>
+    <string name="aux_voltage_value">%1$+.2f</string>
+    <string name="aux_stereo">Stereo:</string>
+    <string name="aux_left">Left</string>
+    <string name="aux_center">Center</string>
+    <string name="aux_right">Right</string>
+    <string name="aux_output">AUX</string>
+    <string name="aux_max_volume">Max volume on start</string>
+    <string name="aux_max_volume_description">(set media volume to max)</string>
+    <string name="aux_volume_keys">Volume keys adjust media volume</string>
+    <string name="aux_volume_keys_description">(by default they adjust frequency)</string>
+    <string name="aux_headphones">Don\'t play unless headphones detected</string>
+    <string name="aux_headphones_description">(so you don\'t blast random sounds)</string>
 </resources>
