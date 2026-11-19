@@ -1,10 +1,14 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 33
+    buildFeatures {
+        buildConfig true
+    }
+    ndkVersion '27.0.12077973'
+    compileSdk 37
     defaultConfig {
-        minSdkVersion 14
-        targetSdkVersion 33
+        minSdk 21
+        targetSdk 37
 
         ndk {
             moduleName "NDK2"
@@ -13,7 +17,7 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.txt'
         }
     }
     externalNativeBuild {

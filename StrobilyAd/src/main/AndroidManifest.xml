@@ -9,6 +9,8 @@
   	<uses-permission android:name="android.permission.RECORD_AUDIO" />
    	<uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
   	<uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MICROPHONE"/>
    	
   	<uses-permission android:name="android.permission.INTERNET"/>
   	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
@@ -37,7 +39,12 @@
             </intent-filter>
         </activity>
         
-        <service android:name="com.tp77.StrobeLib.StrobeLibService"/>
+        <service android:name="com.tp77.StrobeLib.StrobeLibService"
+            android:exported="false"
+            android:foregroundServiceType="specialUse">
+            <property android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="User-controlled continuous flashlight and timed strobe light"/>
+        </service>
         <activity android:name="com.tp77.StrobeLib.StrobeLibActivity"
                   android:screenOrientation="portrait"/>
         
@@ -47,7 +54,12 @@
             	  android:windowSoftInputMode="adjustPan"
             	  android:exported="true"
                   android:launchMode="singleTask"/>
-        <service android:name="com.tp77.StrobeLib.StrobeService"/>
+        <service android:name="com.tp77.StrobeLib.StrobeService"
+            android:exported="false"
+            android:foregroundServiceType="specialUse|microphone">
+            <property android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="User-controlled continuous flashlight and timed strobe light"/>
+        </service>
 
         <provider
             android:name="android.support.v4.content.FileProvider"

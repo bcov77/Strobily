@@ -107,4 +107,10 @@
         \n\nShow LED state -- The LED is:
     </string>
   
+    <string name="brightness_label">Brightness:</string>
+    <string name="brightness_min">0%</string>
+    <string name="brightness_max">100%</string>
+    <string name="brightness_percent">%1$d%%</string>
+    <string name="show_brightness_slider">Show brightness slider</string>
+    <string name="custom_brightness">Custom brightness</string>
 </resources>

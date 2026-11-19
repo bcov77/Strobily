@@ -2,6 +2,11 @@ package com.tp77.StrobeLib;
 
 import com.tp77.StrobeLib.VerticalSeekbar.VerticalSeekbarListener;
 
+import android.content.Context;
+import android.hardware.camera2.CameraAccessException;
+import android.hardware.camera2.CameraCharacteristics;
+import android.hardware.camera2.CameraManager;
+import android.os.Build;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -42,6 +47,9 @@ public class StrobeFragment extends MyFragment {
 	public static final String P_USE_SAVED = "useSaved";
 	public static final String P_FREQUENCY = "frequency";
 	public static final String P_DUTY = "duty";
+	public static final String P_BRIGHTNESS = "brightness";
+    public static final String P_CUSTOM_BRIGHTNESS = "customBrightness";
+    private int mDefaultBrightnessPercent = 100;
 	private static final String P_BURST = "burst";
 	
 	private SharedPreferences mPrefs = null;
@@ -53,6 +61,14 @@ public class StrobeFragment extends MyFragment {
 		super.onAttach(activity);
 		mActivity = (MainActivity)activity;
 		mPrefs = PreferenceManager.getDefaultSharedPreferences(activity);
+        Editor defaults = mPrefs.edit();
+        if (!mPrefs.contains(P_BRIGHTNESS)) defaults.putInt(P_BRIGHTNESS, 100);
+        if (!mPrefs.contains(P_CUSTOM_BRIGHTNESS)) defaults.putBoolean(P_CUSTOM_BRIGHTNESS, false);
+        if (!mPrefs.contains(SettingsFragment.P_SHOW_BRIGHTNESS)) {
+            defaults.putBoolean(SettingsFragment.P_SHOW_BRIGHTNESS, true);
+        }
+        MainActivity.apply(defaults);
+
 	}
 	
 	
@@ -121,6 +137,40 @@ public class StrobeFragment extends MyFragment {
 			}
 		});
 		
+        mDefaultBrightnessPercent = getDeviceDefaultBrightnessPercent();
+        v.findViewById(R.id.custom_brightness_check).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Editor e = mPrefs.edit();
+                e.putBoolean(P_CUSTOM_BRIGHTNESS, ((CheckBox)view).isChecked());
+                MainActivity.apply(e);
+                updateBrightnessControls();
+            }
+        });
+
+        // The service observes brightness preferences and updates native state without restarting playback.
+        SeekBar brightnessSeek = (SeekBar)v.findViewById(R.id.brightness_seek_bar);
+        brightnessSeek.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if (fromUser && mPrefs.getBoolean(P_CUSTOM_BRIGHTNESS, false)) {
+                    Editor e = mPrefs.edit();
+                    e.putInt(P_BRIGHTNESS, progress);
+                    MainActivity.apply(e);
+                }
+                ((TextView)v.findViewById(R.id.brightness_value)).setText(
+                        getString(R.string.brightness_percent, progress));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+        });
+
 		v2 = v.findViewById(R.id.save_button);
 		v2.setOnClickListener(new OnClickListener() {
 			@Override
@@ -359,6 +409,8 @@ public class StrobeFragment extends MyFragment {
 		}
 		
 		View v = mRoot;
+        updateBrightnessControls();
+
 		
 		int offTime = calculateTime(false);
 		int onTime = calculateTime(true);
@@ -393,6 +445,60 @@ public class StrobeFragment extends MyFragment {
 		
 	}
 	
+    private void updateBrightnessControls() {
+        boolean custom = mPrefs.getBoolean(P_CUSTOM_BRIGHTNESS, false);
+        int brightness = custom ? mPrefs.getInt(P_BRIGHTNESS, 100) : mDefaultBrightnessPercent;
+        ((CheckBox)mRoot.findViewById(R.id.custom_brightness_check)).setChecked(custom);
+        SeekBar slider = (SeekBar)mRoot.findViewById(R.id.brightness_seek_bar);
+        slider.setEnabled(custom);
+        slider.setAlpha(custom ? 1f : 0.4f);
+        slider.setProgress(brightness);
+        TextView value = (TextView)mRoot.findViewById(R.id.brightness_value);
+        value.setText(getString(R.string.brightness_percent, brightness));
+        value.setAlpha(custom ? 1f : 0.4f);
+        mRoot.findViewById(R.id.brightness_section).setVisibility(
+                mPrefs.getBoolean(SettingsFragment.P_SHOW_BRIGHTNESS, true)
+                        ? View.VISIBLE : View.GONE);
+    }
+
+    private int getDeviceDefaultBrightnessPercent() {
+        // Reading camera metadata does not turn on the light or change its strength.
+        if (Build.VERSION.SDK_INT >= 33) {
+            CameraManager manager =
+                    (CameraManager)mActivity.getSystemService(
+                            Context.CAMERA_SERVICE);
+            try {
+                String selected = mActivity.mService != null ? mActivity.mService.mWhichCamera : null;
+                String fallback = null;
+                if (selected == null) {
+                    for (String id : manager.getCameraIdList()) {
+                        CameraCharacteristics info = manager.getCameraCharacteristics(id);
+                        if (!Boolean.TRUE.equals(info.get(
+                                CameraCharacteristics.FLASH_INFO_AVAILABLE))) continue;
+                        if (fallback == null) fallback = id;
+                        if (Integer.valueOf(CameraCharacteristics.LENS_FACING_BACK)
+                                .equals(info.get(CameraCharacteristics.LENS_FACING))) {
+                            selected = id;
+                            break;
+                        }
+                    }
+                    if (selected == null) selected = fallback;
+                }
+                if (selected != null) {
+                    CameraCharacteristics info = manager.getCameraCharacteristics(selected);
+                    Integer maximum = info.get(CameraCharacteristics.FLASH_INFO_STRENGTH_MAXIMUM_LEVEL);
+                    Integer normal = info.get(CameraCharacteristics.FLASH_INFO_STRENGTH_DEFAULT_LEVEL);
+                    if (maximum != null && maximum > 0 && normal != null && normal > 0) {
+                        return Math.min(100, Math.round(100f * normal / maximum));
+                    }
+                }
+            } catch (CameraAccessException | IllegalArgumentException | SecurityException e) {
+                // Older/unsupported devices display 100% when no default is available.
+            }
+        }
+        return 100;
+    }
+
 	private int getSavedTime() {
 		return mPrefs.getInt(P_ON_LENGTH, 50000);
 	}

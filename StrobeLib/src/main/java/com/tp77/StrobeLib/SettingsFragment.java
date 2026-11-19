@@ -29,6 +29,7 @@ public class SettingsFragment extends MyFragment {
 	public static final String P_FLASH_COLOR = "flashColor";
 	public static final String P_PREVIEW_HACK = "previewHack";
 	public static final String P_PERSIST = "persist";
+	public static final String P_SHOW_BRIGHTNESS = "showBrightness";
 	public static final String P_SHOW_BURST = "showBurst";
 	public static final String P_DIM = "dim";
 	public static final String P_HELP = "help";
@@ -140,6 +141,14 @@ public class SettingsFragment extends MyFragment {
 				updateSliders(false);
 			}
 		});
+        mRoot.findViewById(R.id.brightness_check).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                togglePref(P_SHOW_BRIGHTNESS, true, mActivity);
+                updateSliders(false);
+                mActivity.refreshFragments();
+            }
+        });
 		mRoot.findViewById(R.id.burst_check).setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -189,6 +198,8 @@ public class SettingsFragment extends MyFragment {
 		((CheckBox)mRoot.findViewById(R.id.preview_check)).setChecked(mPrefs.getBoolean(P_PREVIEW_HACK, false));
 		((CheckBox)mRoot.findViewById(R.id.persist_check)).setChecked(mPrefs.getBoolean(P_PERSIST, true));
 		((CheckBox)mRoot.findViewById(R.id.dim_check)).setChecked(mPrefs.getBoolean(P_DIM, false));
+        ((CheckBox)mRoot.findViewById(R.id.brightness_check)).setChecked(
+                mPrefs.getBoolean(P_SHOW_BRIGHTNESS, true));
 		((CheckBox)mRoot.findViewById(R.id.burst_check)).setChecked(mPrefs.getBoolean(P_SHOW_BURST, false));
 		((CheckBox)mRoot.findViewById(R.id.help_check)).setChecked(mPrefs.getBoolean(P_HELP, true));
 		

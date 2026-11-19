@@ -1,15 +1,18 @@
 apply plugin: 'com.android.application'
 
 android {
+    buildFeatures {
+        buildConfig true
+    }
     signingConfigs {
     }
-    compileSdkVersion 33
+    compileSdk 37
     defaultConfig {
         applicationId "com.tp77.StrobeAd"
-        minSdkVersion 14
-        targetSdkVersion 33
-        versionCode 56
-        versionName '2.2.7'
+        minSdk 21
+        targetSdk 37
+        versionCode 57
+        versionName '2.2.8'
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -17,7 +20,7 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
     productFlavors {

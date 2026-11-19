@@ -1,0 +1,9 @@
+plugins {
+    id 'com.android.application' version '9.4.1' apply false
+    id 'com.android.library' version '9.4.1' apply false
+}
+
+subprojects {
+    // The legacy checkout contains tracked build outputs. Keep new builds separate.
+    layout.buildDirectory = rootProject.layout.projectDirectory.dir(".build/${project.name}")
+}

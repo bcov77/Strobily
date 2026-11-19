@@ -218,6 +218,17 @@ public class MainActivity extends FragmentActivity {
 
 
 		setContentView(R.layout.act_main_activity);
+        if (Build.VERSION.SDK_INT >= 35) {
+            View content = findViewById(R.id.root);
+            content.setOnApplyWindowInsetsListener((view, insets) -> {
+                android.graphics.Insets safe = insets.getInsets(
+                        android.view.WindowInsets.Type.systemBars()
+                                | android.view.WindowInsets.Type.displayCutout());
+                view.setPadding(safe.left, safe.top, safe.right, safe.bottom);
+                return insets;
+            });
+            content.requestApplyInsets();
+        }
 		
 		Bundle widgetBundle = getIntent().getBundleExtra(getString(R.string.S_WIDGET));
 		mWidgetAppeared = false;
@@ -1170,7 +1181,7 @@ public class MainActivity extends FragmentActivity {
 		
 		PatPart.fillInCommands(0, flashes, pattern, this, 0);
 		
-		startFlashing(flashes, mWidgetLoop, S_WIDGET);
+		startPatternFlashing(flashes, mWidgetLoop, S_WIDGET);
 		
 		
 		
@@ -1228,6 +1239,16 @@ public class MainActivity extends FragmentActivity {
 	}
 	
 	public void startFlashing(int[] flashes, boolean loop, int who) {
+        startFlashing(flashes, null, loop, who);
+    }
+
+    public void startPatternFlashing(int[] flashes, boolean loop, int who) {
+        int[] brightnesses = new int[flashes.length / 2];
+        java.util.Arrays.fill(brightnesses, -1);
+        startFlashing(flashes, brightnesses, loop, who);
+    }
+
+    public void startFlashing(int[] flashes, int[] brightnesses, boolean loop, int who) {
 		updateScreenColor();
 		if (!serviceReady(true))
 			return;
@@ -1245,9 +1266,10 @@ public class MainActivity extends FragmentActivity {
 				temp_flashes[i] = flashes[i];
 			}
 			flashes = temp_flashes;
+            if (brightnesses != null) brightnesses = java.util.Arrays.copyOf(brightnesses, 5000);
 			toastOnUiThread(this, "Limiting to 5,000 flashes", Toast.LENGTH_SHORT);
 		}
-		mService.controlUpdate(flashes, true, false, loop, who);
+		mService.controlUpdate(flashes, brightnesses, true, false, loop, who);
 		setProperBrightness();
 		setWakeLock(true);
 	}

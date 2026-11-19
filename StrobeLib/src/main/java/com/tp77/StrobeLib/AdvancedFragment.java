@@ -226,6 +226,8 @@ public class AdvancedFragment extends MyFragment {
 		boolean torchSave = mActivity.mService.mTorch;;
 		boolean flashingSave = mActivity.mService.mFlashing;
 		int[] flashesSave = mActivity.mService.mFlashes;
+        int[] brightnessesSave = mActivity.mService.mBrightnesses;
+        int whoSave = mActivity.mService.mWhoStartedIt;
 		boolean loopSave = mActivity.mService.mLoop;
 		
 		mActivity.stopFlashing();
@@ -304,7 +306,7 @@ public class AdvancedFragment extends MyFragment {
 		mActivity.mService.startTheStrober();
 		
 		if (flashingSave) {
-			mActivity.startFlashing(flashesSave, loopSave, mActivity.mService.mWhoStartedIt);
+			mActivity.startFlashing(flashesSave, brightnessesSave, loopSave, whoSave);
 		}
 		
 		if (torchSave) {

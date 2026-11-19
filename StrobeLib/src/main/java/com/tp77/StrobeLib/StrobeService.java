@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.hardware.Camera;
+import android.hardware.camera2.CameraCharacteristics;
 import android.hardware.camera2.CameraDevice;
 import android.hardware.camera2.CameraManager;
 import android.media.AudioFormat;
@@ -94,9 +95,9 @@ public class StrobeService extends Service {
 	
 	private native void doStrobe(Camera camera, Camera.Parameters onParams, Camera.Parameters offParams, Camera.Parameters offParams2, 
 			String onFlatten, String offFlatten, String offFlatten2, boolean useFlatten, CameraManager camMan, String whichCamera );
-	private native void update(int[] flashes, boolean loop, boolean flashing, boolean torch);
+	private native void update(int[] flashes, int[] brightnesses, boolean loop, boolean flashing, boolean torch);
 	private native void setSettings(boolean useLed, boolean useScreen, int lateThreshold,
-			int flashPreempt, boolean gentle);
+			int flashPreempt, boolean gentle, int brightness);
 	private native void kill();
 	private native int debugNumber();
 	private native int checkLag2();
@@ -108,12 +109,50 @@ public class StrobeService extends Service {
 	private native int[] getDutyData();
 	
 	
+    // Stored as percentages; JNI receives hardware levels. Null means live global brightness.
+    public int[] mBrightnesses = null;
+    private int mMaximumBrightness = 1;
+    private final SharedPreferences.OnSharedPreferenceChangeListener mBrightnessListener =
+            (preferences, key) -> {
+                if (StrobeFragment.P_BRIGHTNESS.equals(key)
+                        || StrobeFragment.P_CUSTOM_BRIGHTNESS.equals(key)
+                        || SettingsFragment.P_SHOW_BRIGHTNESS.equals(key)) {
+                    settingsUpdate();
+                }
+            };
+
+    private void readBrightnessCapabilities() {
+        mMaximumBrightness = 1;
+        if (Build.VERSION.SDK_INT >= 33 && mWhichCamera != null) {
+            try {
+                CameraManager manager = (CameraManager)getSystemService(CAMERA_SERVICE);
+                Integer maximum = manager.getCameraCharacteristics(mWhichCamera).get(
+                        CameraCharacteristics.FLASH_INFO_STRENGTH_MAXIMUM_LEVEL);
+                if (maximum != null) mMaximumBrightness = maximum;
+            } catch (android.hardware.camera2.CameraAccessException | IllegalArgumentException | SecurityException e) {
+                Log.w("StrobeService", "Cannot read torch brightness support", e);
+            }
+        }
+    }
+
+    private int hardwareBrightness(int percent) {
+        if (percent == -1 || mMaximumBrightness <= 1) return -1;
+        return Math.max(1, Math.round(Math.max(0, Math.min(100, percent)) * mMaximumBrightness / 100f));
+    }
+
+    private int globalBrightness() {
+        if (!mPrefs.getBoolean(SettingsFragment.P_SHOW_BRIGHTNESS, true)
+                || !mPrefs.getBoolean(StrobeFragment.P_CUSTOM_BRIGHTNESS, false)) return -1;
+        return hardwareBrightness(mPrefs.getInt(StrobeFragment.P_BRIGHTNESS, 100));
+    }
+
 	@Override
 	public void onCreate() {
 		super.onCreate();
 		mTheIBinder = new LocalBinder();
 		
 		mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        mPrefs.registerOnSharedPreferenceChangeListener(mBrightnessListener);
 		mPowerManager = (PowerManager) getSystemService(POWER_SERVICE);
 		mWakeLock = mPowerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "Background flasher");
 	}
@@ -121,6 +160,7 @@ public class StrobeService extends Service {
 	
 	@Override
 	public void onDestroy() {
+        mPrefs.unregisterOnSharedPreferenceChangeListener(mBrightnessListener);
 		mMusicing = false;
 		stopTheStrober(false);
 		endForeground();
@@ -187,7 +227,15 @@ public class StrobeService extends Service {
 	            .setContentText(str).build();
 //	    notificationManager.notify(N_FOREGROUND, notification);
 		
-	    startForeground(N_FOREGROUND, notification);
+	    if (Build.VERSION.SDK_INT >= 34) {
+            int types = android.content.pm.ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE;
+            if (mMusicing) {
+                types |= android.content.pm.ServiceInfo.FOREGROUND_SERVICE_TYPE_MICROPHONE;
+            }
+            startForeground(N_FOREGROUND, notification, types);
+        } else {
+            startForeground(N_FOREGROUND, notification);
+        }
 		
 		mForeground = true;
 	}
@@ -242,6 +290,8 @@ public class StrobeService extends Service {
 	}
 
 	public void startTheStrober() {
+        readBrightnessCapabilities();
+        settingsUpdate();
 		boolean doFlatten = false;
     	try {
     		Method theNative = Camera.class.getDeclaredMethod("native_setParameters", String.class);
@@ -347,7 +397,7 @@ public class StrobeService extends Service {
 		int flashPreempt = AdvancedFragment.flashPreempt(this);
 		boolean gentle = AdvancedFragment.useGentle(this);
 		
-		this.setSettings(useLed, useScreen, lateThreshold, flashPreempt, gentle);
+		this.setSettings(useLed, useScreen, lateThreshold, flashPreempt, gentle, globalBrightness());
 		
 		if (mFlashing && mPrefs.getBoolean(AdvancedFragment.P_FULL_CPU, false)) {
 			startThreads();
@@ -416,6 +466,31 @@ public class StrobeService extends Service {
 	
 	
 	public void controlUpdate(int[] flashes, boolean flashing, boolean torch, boolean loop, int whoStartedIt) {
+        controlUpdate(flashes, null, flashing, torch, loop, whoStartedIt);
+    }
+
+    // A non-null array is independent of global preferences, one percentage per pulse.
+    // -1 requests the original default-brightness command for that pulse.
+    public void controlUpdate(int[] flashes, int[] brightnesses, boolean flashing, boolean torch,
+                              boolean loop, int whoStartedIt) {
+        if (flashes == null) flashes = new int[] {50000, 50000};
+        if (flashes.length == 0 || flashes.length > 10000 || flashes.length % 2 != 0) {
+            throw new IllegalArgumentException("Expected 1 to 5000 ON/OFF pairs");
+        }
+        if (brightnesses != null && brightnesses.length != flashes.length / 2) {
+            throw new IllegalArgumentException("Expected one brightness per ON/OFF pair");
+        }
+        int[] levels = null;
+        if (brightnesses != null) {
+            levels = new int[brightnesses.length];
+            for (int i = 0; i < levels.length; i++) {
+                if (brightnesses[i] < -1 || brightnesses[i] > 100) {
+                    throw new IllegalArgumentException("Brightness must be -1 or 0 to 100 percent");
+                }
+                levels[i] = hardwareBrightness(brightnesses[i]);
+            }
+        }
+        mBrightnesses = brightnesses == null ? null : brightnesses.clone();
 		mFlashing = flashing;
 		mTorch = torch;
 		mLoop = loop;
@@ -438,9 +513,6 @@ public class StrobeService extends Service {
 		else
 			setWakeLock(false);
 		
-		if (flashes == null)
-			flashes = new int[] {50000, 50000};
-		
 		for (int iii = 0; iii < flashes.length; iii++) {
 			if (flashes[iii] > 1000000*100)
 				flashes[iii] = 1000000*100;
@@ -451,7 +523,7 @@ public class StrobeService extends Service {
 		}
 
 		mFlashes = flashes;
-		update(mFlashes, mLoop, mFlashing, mTorch);
+		update(mFlashes, levels, mLoop, mFlashing, mTorch);
 		
 		if (mFlashing && mPrefs.getBoolean(AdvancedFragment.P_FULL_CPU, false))
 			startThreads();

@@ -5,6 +5,7 @@
 #include <jni.h>
 #include <string.h>
 #include <android/log.h>
+#include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
 
@@ -52,6 +53,13 @@ static int bNextUsingArray = 0;
 static int bUsingArray = 0;
 static int anFlashes0[10000];
 static int anFlashes1[10000];
+static int anBrightness0[5000];
+static int anBrightness1[5000];
+static int bBrightnessArray0 = 0;
+static int bBrightnessArray1 = 0;
+static volatile int nGlobalBrightness = -1;
+static volatile int brightnessNeedsUpdate = 0;
+static int nPulseBrightness = -1;
 
 static jobject jOffParam = 0;
 static jobject jOnParam = 0;
@@ -77,6 +85,7 @@ static jobject jWhichCamera;
 
 static jclass clsCamMan;
 static jmethodID midSetTorchMode;
+static jmethodID midSetTorchStrength;
 
 
 
@@ -201,6 +210,39 @@ jlong timespecToJlong(const struct timespec *ts)
 
 
 
+static int usesGlobalBrightness() {
+    return bTorch || !(bUsingArray ? bBrightnessArray1 : bBrightnessArray0);
+}
+
+static int needsBrightnessCommand() {
+    return jCamMan && brightnessNeedsUpdate && usesGlobalBrightness();
+}
+
+// Return 1 when native brightness restoration needs the next torch-loop iteration.
+static int turnOnLed(JNIEnv *env) {
+    int level = bTorch ? nGlobalBrightness : nPulseBrightness;
+    if (midSetTorchStrength && level > 0) {
+        (*env)->CallVoidMethod(env, jCamMan, midSetTorchStrength, jWhichCamera, (jint)level);
+    } else {
+        // The old ON command preserves an already-lit torch's custom strength.
+        // Only a requested return to native brightness needs an OFF reset first.
+        if (bTorch && needsBrightnessCommand() && nLedOn > 0 && level == -1) {
+            (*env)->CallVoidMethod(env, jCamMan, midSetTorchMode, jWhichCamera, (jboolean)0);
+            if ((*env)->ExceptionCheck(env)) return 0;
+            nLedOn = 0;
+            // Let the OFF reset settle during the existing idle-loop sleep.
+            // Keep the update flag set so the next iteration restores ON.
+            return 1;
+        }
+        (*env)->CallVoidMethod(env, jCamMan, midSetTorchMode, jWhichCamera, (jboolean)1);
+    }
+    if (!(*env)->ExceptionCheck(env) && usesGlobalBrightness() && level == nGlobalBrightness) {
+        brightnessNeedsUpdate = 0;
+    }
+    return 0;
+}
+
+
 int changeFlash(JNIEnv * env, jobject this, int mode, int maxOff, int maxOn)
 {
 
@@ -213,10 +255,10 @@ int changeFlash(JNIEnv * env, jobject this, int mode, int maxOff, int maxOn)
 			switch (cameraMode)
 			{
 			case C_ON:
-				if ((!bGentle && nLedOn < maxOn) || nLedOn < 1) {
+				if ((!bGentle && nLedOn < maxOn) || nLedOn < 1 || needsBrightnessCommand()) {
 					jboolean jb = 1;
 					if (jCamera) (*env)->CallVoidMethod(env, jCamera, midNativeSetParameters, jOnFlatten);
-					else         (*env)->CallVoidMethod(env, jCamMan, midSetTorchMode, jWhichCamera, jb);
+                    else if (turnOnLed(env)) break;
 				}
 				if (nLedOn < 1)
 					nLedOn = 1;
@@ -252,10 +294,10 @@ int changeFlash(JNIEnv * env, jobject this, int mode, int maxOff, int maxOn)
 			switch (cameraMode)
 			{
 			case C_ON:
-				if ((!bGentle && nLedOn < maxOn) || nLedOn < 1) {
+				if ((!bGentle && nLedOn < maxOn) || nLedOn < 1 || needsBrightnessCommand()) {
 					jboolean jb = 1;
 					if (jCamera) (*env)->CallVoidMethod(env, jCamera, midNativeSetParameters, jOnParam);
-					else         (*env)->CallVoidMethod(env, jCamMan, midSetTorchMode, jWhichCamera, jb);
+                    else if (turnOnLed(env)) break;
 				}
 				if (nLedOn < 1)
 					nLedOn = 1;
@@ -328,10 +370,12 @@ void computeThisOnOff() {
     int use_val = abs(nFlashIndex % 5000); // it's unclear why this is needed but we get segfaults without it
 	if (bUsingArray)
 	{
+		nPulseBrightness = bBrightnessArray1 ? anBrightness1[use_val] : nGlobalBrightness;
 		nOnLen = anFlashes1[use_val*2+0];
 		nOffLen = anFlashes1[use_val*2+1];
 	} else
 	{
+		nPulseBrightness = bBrightnessArray0 ? anBrightness0[use_val] : nGlobalBrightness;
 		nOnLen = anFlashes0[use_val*2+0];
 		nOffLen = anFlashes0[use_val*2+1];
 	}
@@ -405,6 +449,14 @@ void Java_com_tp77_StrobeLib_StrobeService_doStrobe(JNIEnv * env, jobject this, 
 		clsCamMan = (*env)->FindClass(env, "android/hardware/camera2/CameraManager");
 		midSetTorchMode = (*env)->GetMethodID(env, clsCamMan, "setTorchMode",
 				"(Ljava/lang/String;Z)V");
+        // This method is absent before API 33. Keep the original command as fallback.
+        midSetTorchStrength = (*env)->GetMethodID(env, clsCamMan,
+                "turnOnTorchWithStrengthLevel", "(Ljava/lang/String;I)V");
+        if ((*env)->ExceptionCheck(env)) {
+            (*env)->ExceptionClear(env);
+            midSetTorchStrength = NULL;
+        }
+
 
 
 	}
@@ -712,12 +764,30 @@ void Java_com_tp77_StrobeLib_StrobeService_otherThread(JNIEnv * env, jobject thi
 
 
 
-void Java_com_tp77_StrobeLib_StrobeService_update(JNIEnv * env, jobject this, jintArray jFlashes,
+void Java_com_tp77_StrobeLib_StrobeService_update(JNIEnv * env, jobject this, jintArray jFlashes, jintArray jBrightnesses,
 		jboolean jLoop, jboolean jFlashing, jboolean jTorch)
 {
 	int iii;
 	jint len = (*env)->GetArrayLength(env, jFlashes);
+    if (len == 0 || len > 10000 || len % 2 != 0
+            || (jBrightnesses && (*env)->GetArrayLength(env, jBrightnesses) != len / 2)) {
+        jclass error = (*env)->FindClass(env, "java/lang/IllegalArgumentException");
+        (*env)->ThrowNew(env, error, "Invalid flash/brightness array lengths");
+        return;
+    }
 	jint* jintFlashes = (*env)->GetIntArrayElements(env, jFlashes, 0);
+    if (!jintFlashes) return;
+    int *brightnessTarget = bUsingArray ? anBrightness0 : anBrightness1;
+    if (jBrightnesses) {
+        (*env)->GetIntArrayRegion(env, jBrightnesses, 0, len / 2, brightnessTarget);
+        if ((*env)->ExceptionCheck(env)) {
+            (*env)->ReleaseIntArrayElements(env, jFlashes, jintFlashes, JNI_ABORT);
+            return;
+        }
+    }
+    if (bUsingArray) bBrightnessArray0 = jBrightnesses != NULL;
+    else bBrightnessArray1 = jBrightnesses != NULL;
+
 	if (bUsingArray)
 	{
 		for (iii = 0; iii < len; iii++) {
@@ -745,8 +815,12 @@ void Java_com_tp77_StrobeLib_StrobeService_update(JNIEnv * env, jobject this, ji
 // this is for things that don't require an abort
 
 void Java_com_tp77_StrobeLib_StrobeService_setSettings(JNIEnv * env, jobject this, jboolean jLed, jboolean jScreen,
-		jint jLateThreshold, jint jFlashPreempt, jboolean jGentle)
+		jint jLateThreshold, jint jFlashPreempt, jboolean jGentle, jint jBrightness)
 {
+    if (jBrightness != nGlobalBrightness) {
+        nGlobalBrightness = jBrightness;
+        brightnessNeedsUpdate = 1;
+    }
 	bNextLed = jLed;
 	bNextScreen = jScreen;
 	if (jLateThreshold == -1)

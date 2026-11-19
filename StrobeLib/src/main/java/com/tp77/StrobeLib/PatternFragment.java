@@ -126,7 +126,7 @@ public class PatternFragment extends MyFragment implements PatternSaved {
 				if (mActivity.mService.mFlashing)
 					mActivity.stopFlashing();
 				else
-					mActivity.startFlashing(buildFlashes(), false, MainActivity.S_OTHER);
+					mActivity.startPatternFlashing(buildFlashes(), false, MainActivity.S_OTHER);
 			}
 		});
 
@@ -138,7 +138,7 @@ public class PatternFragment extends MyFragment implements PatternSaved {
 				if (mActivity.mService.mFlashing)
 					mActivity.stopFlashing();
 				else
-					mActivity.startFlashing(buildFlashes(), true, MainActivity.S_OTHER);
+					mActivity.startPatternFlashing(buildFlashes(), true, MainActivity.S_OTHER);
 			}
 		});
 		
@@ -633,7 +633,7 @@ public class PatternFragment extends MyFragment implements PatternSaved {
 					mRoot.findViewById(R.id.focus_catch).requestFocus();
 					int[] flashes = new int[mPp.getCommandSpots(mActivity, 0)];
 					mPp.fillInCommands(0, flashes, mActivity, 0);
-					((MainActivity)getActivity()).startFlashing(flashes, false, MainActivity.S_OTHER);
+					((MainActivity)getActivity()).startPatternFlashing(flashes, false, MainActivity.S_OTHER);
 				}
 			});
 			
