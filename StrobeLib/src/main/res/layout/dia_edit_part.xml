@@ -546,10 +546,15 @@
 				    />
 				
 				
+            <include layout="@layout/brightness_controls"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/third_div" />
+
 			   	<com.tp77.StrobeLib.MyNumberPicker
 			   	    android:layout_width="wrap_content"
 			   	    android:layout_height="wrap_content"
-			   	    android:layout_below="@+id/third_div"
+                    android:layout_below="@+id/brightness_section"
 			   	    android:layout_centerHorizontal="true"
 			   	    android:id="@+id/flashes_picker"
 			   	    android:layout_marginTop="10dp"

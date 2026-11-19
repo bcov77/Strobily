@@ -126,7 +126,7 @@ public class PatternFragment extends MyFragment implements PatternSaved {
 				if (mActivity.mService.mFlashing)
 					mActivity.stopFlashing();
 				else
-					mActivity.startPatternFlashing(buildFlashes(), false, MainActivity.S_OTHER);
+					mActivity.startPatternFlashing(mPattern, false, MainActivity.S_OTHER);
 			}
 		});
 
@@ -138,7 +138,7 @@ public class PatternFragment extends MyFragment implements PatternSaved {
 				if (mActivity.mService.mFlashing)
 					mActivity.stopFlashing();
 				else
-					mActivity.startPatternFlashing(buildFlashes(), true, MainActivity.S_OTHER);
+					mActivity.startPatternFlashing(mPattern, true, MainActivity.S_OTHER);
 			}
 		});
 		
@@ -154,25 +154,6 @@ public class PatternFragment extends MyFragment implements PatternSaved {
 	
 	
 	
-	
-	
-	private int[] buildFlashes() {
-		
-		int commands = PatPart.getCommandSpots(mPattern, mActivity, 0);
-
-		if ( commands > 10000 ) {
-			mActivity.toastOnUiThread(mActivity, "Sorry! Patterns limited to 10,000 events." +
-					"Email me if this is an issue. It\'s easy to change", Toast.LENGTH_LONG);
-			return new int[] {1000000, 1000000};
-		}
-		
-		int[] flashes = new int[commands];
-		
-		PatPart.fillInCommands(0, flashes, mPattern, mActivity, 0);
-		
-		
-		return flashes;
-	}
 	
 	
 	@TargetApi(Build.VERSION_CODES.FROYO)
@@ -431,6 +412,8 @@ public class PatternFragment extends MyFragment implements PatternSaved {
 	public static class EditDialogFragment extends DialogFragment {
 		
 		private PatPart mPp = null;
+        private int mCustomBrightness = 100;
+        private int mDefaultBrightness = 100;
 		private LinearLayout mRoot = null;
 		private boolean mUseRpm = false;
 		private MainActivity mActivity = null;
@@ -457,6 +440,28 @@ public class PatternFragment extends MyFragment implements PatternSaved {
 			AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 			
 			mRoot = (LinearLayout)getActivity().getLayoutInflater().inflate(R.layout.dia_edit_part, null);
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(mActivity);
+            mCustomBrightness = mPp.mBrightness >= 0 ? mPp.mBrightness
+                    : Math.max(0, Math.min(100, preferences.getInt(StrobeFragment.P_BRIGHTNESS, 100)));
+            mDefaultBrightness = StrobeFragment.getDeviceDefaultBrightnessPercent(mActivity);
+            ((CheckBox)mRoot.findViewById(R.id.custom_brightness_check)).setChecked(mPp.mBrightness >= 0);
+            mRoot.findViewById(R.id.custom_brightness_check).setOnClickListener(view -> {
+                mPp.mBrightness = ((CheckBox)view).isChecked() ? mCustomBrightness : -1;
+                refreshLayout(true);
+            });
+            ((SeekBar)mRoot.findViewById(R.id.brightness_seek_bar)).setOnSeekBarChangeListener(
+                    new OnSeekBarChangeListener() {
+                        @Override public void onProgressChanged(SeekBar slider, int value, boolean fromUser) {
+                            if (fromUser) {
+                                mCustomBrightness = value;
+                                mPp.mBrightness = value;
+                                refreshLayout(true);
+                            }
+                        }
+                        @Override public void onStartTrackingTouch(SeekBar slider) { }
+                        @Override public void onStopTrackingTouch(SeekBar slider) { }
+                    });
+
 			
 			final View focusCatch = mRoot.findViewById(R.id.focus_catch);
 			
@@ -631,9 +636,7 @@ public class PatternFragment extends MyFragment implements PatternSaved {
 				@Override
 				public void onClick(View v) {
 					mRoot.findViewById(R.id.focus_catch).requestFocus();
-					int[] flashes = new int[mPp.getCommandSpots(mActivity, 0)];
-					mPp.fillInCommands(0, flashes, mActivity, 0);
-					((MainActivity)getActivity()).startPatternFlashing(flashes, false, MainActivity.S_OTHER);
+                    mActivity.startPatternFlashing(new PatPart[] {mPp}, false, MainActivity.S_OTHER);
 				}
 			});
 			
@@ -749,6 +752,20 @@ public class PatternFragment extends MyFragment implements PatternSaved {
 		private ListView pattern_list;
 		
 		private void refreshLayout(boolean sliderUpdate) {
+            boolean custom = mPp.mBrightness >= 0;
+            boolean shown = PreferenceManager.getDefaultSharedPreferences(mActivity)
+                    .getBoolean(SettingsFragment.P_SHOW_BRIGHTNESS, true);
+            mRoot.findViewById(R.id.brightness_section).setVisibility(
+                    shown && mPp.mType == PatPart.T_FLASH ? View.VISIBLE : View.GONE);
+            SeekBar brightness = (SeekBar)mRoot.findViewById(R.id.brightness_seek_bar);
+            brightness.setEnabled(custom);
+            brightness.setAlpha(custom ? 1f : 0.4f);
+            brightness.setProgress(custom ? mPp.mBrightness : mDefaultBrightness);
+            ((CheckBox)mRoot.findViewById(R.id.custom_brightness_check)).setChecked(custom);
+            TextView value = (TextView)mRoot.findViewById(R.id.brightness_value);
+            value.setText(getString(R.string.brightness_percent, brightness.getProgress()));
+            value.setAlpha(custom ? 1f : 0.4f);
+
 			if (flashes == null) {
 				flashes = mRoot.findViewById(R.id.flashes);
 				delay = mRoot.findViewById(R.id.delay);

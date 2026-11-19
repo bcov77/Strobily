@@ -48,7 +48,8 @@ public class BrightnessInstrumentation extends Instrumentation {
     private void waitFor(BooleanSupplier condition, String message) {
         long end = SystemClock.uptimeMillis() + 5000;
         while (!condition.getAsBoolean() && SystemClock.uptimeMillis() < end) SystemClock.sleep(25);
-        check(condition.getAsBoolean(), message);
+        check(condition.getAsBoolean(), message + (manager == null ? "" : " (strength=" + strength()
+                + ", lit=" + torchLit + ", torch=" + activity.mService.mTorch + ")"));
     }
 
     private int strength() {
@@ -101,6 +102,7 @@ public class BrightnessInstrumentation extends Instrumentation {
             activity = (MainActivity)startActivitySync(launch);
             waitFor(() -> activity.mService != null && activity.mService.mWhichCamera != null
                     && activity.mService.isFlashReady(), "Camera/service did not become ready");
+            PatternBrightnessChecks.run(this, activity, this::passed);
             camera = activity.mService.mWhichCamera;
             manager = (CameraManager)getTargetContext().getSystemService("camera");
             CameraCharacteristics info = manager.getCameraCharacteristics(camera);
@@ -109,6 +111,7 @@ public class BrightnessInstrumentation extends Instrumentation {
             check(maximum > 1, "This device does not support torch strength control");
             manager.registerTorchCallback(torchCallback, new android.os.Handler(android.os.Looper.getMainLooper()));
 
+            brightness(100, true, true);
             // Strength changes must bypass the ON guard without restarting continuous torch mode.
             runOnMainSync(() -> activity.torchOn());
             waitFor(() -> litAt(maximum), "Torch did not start at custom maximum");
@@ -167,8 +170,18 @@ public class BrightnessInstrumentation extends Instrumentation {
             stopLed();
 
             brightness(0, false, false);
-            start(new int[]{600000, 150000, 600000, 150000, 600000, 150000},
-                    new int[]{0, 100, -1}, MainActivity.S_OTHER);
+            runOnMainSync(() -> {
+                com.tp77.StrobeLib.PatPart[] parts = new com.tp77.StrobeLib.PatPart[3];
+                int[] percentages = {0, 100, -1};
+                for (int i = 0; i < parts.length; i++) {
+                    parts[i] = new com.tp77.StrobeLib.PatPart(activity);
+                    parts[i].mFrequency = 1000000f / 750000f;
+                    parts[i].mUseTime = true;
+                    parts[i].mTime = 600000;
+                    parts[i].mBrightness = percentages[i];
+                }
+                activity.startPatternFlashing(parts, true, MainActivity.S_OTHER);
+            });
             waitFor(() -> litAt(1), "Per-flash minimum missing");
             waitFor(() -> litAt(maximum), "Per-flash maximum missing");
             waitFor(() -> litAt(normal), "Per-flash native sentinel missing");

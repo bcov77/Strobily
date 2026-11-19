@@ -25,9 +25,11 @@ public class PatPart {
 	public int mTime = 0;
 	public boolean mUseTime = false;
 	public String mName = "";
+    // UI percentage, or -1 for native/default brightness. Never inherit global state during playback.
+    public int mBrightness = -1;
 	
 	
-	public static final int VERSION = 1;
+	public static final int VERSION = 2;
 	
 	
 	public PatPart(Context context) {
@@ -40,6 +42,10 @@ public class PatPart {
 		mTime = prefs.getInt(StrobeFragment.P_ON_LENGTH, 50000);
 		mUseTime = prefs.getBoolean(StrobeFragment.P_USE_SAVED, false);
 		mName = "";
+        if (prefs.getBoolean(SettingsFragment.P_SHOW_BRIGHTNESS, true)
+                && prefs.getBoolean(StrobeFragment.P_CUSTOM_BRIGHTNESS, false)) {
+            mBrightness = Math.max(0, Math.min(100, prefs.getInt(StrobeFragment.P_BRIGHTNESS, 100)));
+        }
 		
 		
 	}
@@ -52,9 +58,11 @@ public class PatPart {
 		mTime = p.mTime;
 		mUseTime = p.mUseTime;
 		mName = p.mName;
+        mBrightness = p.mBrightness;
 	}
 	
 	public PatPart(ObjectInput o, int version) throws IOException {
+        if (version < 1 || version > VERSION) throw new IOException("Unsupported pattern version: " + version);
 		mType = o.readInt();
 		mFrequency = o.readFloat();
 		mFlashes = o.readInt();
@@ -62,6 +70,8 @@ public class PatPart {
 		mTime = o.readInt();
 		mUseTime = o.readBoolean();
 		mName = o.readUTF();
+        mBrightness = version >= 2 ? o.readInt() : -1;
+        if (mBrightness < -1 || mBrightness > 100) throw new IOException("Invalid pattern brightness");
 	}
 	
 	public void writeExternal(ObjectOutput o) throws IOException {
@@ -72,17 +82,27 @@ public class PatPart {
 		o.writeInt(mTime);
 		o.writeBoolean(mUseTime);
 		o.writeUTF(mName);
+        o.writeInt(mBrightness);
 	}
 	
 	public static int fillInCommands(int start, int[] pattern, PatPart[] pat, MainActivity context, int depth) {
-		for (int iii = 0; iii < pat.length; iii++) {
-			start = pat[iii].fillInCommands(start, pattern, context, depth);
-		}
+        return fillInCommands(start, pattern, null, pat, context, depth);
+    }
+
+    public static int fillInCommands(int start, int[] pattern, int[] brightnesses,
+                                     PatPart[] pat, MainActivity context, int depth) {
+        for (int iii = 0; iii < pat.length; iii++) {
+            start = pat[iii].fillInCommands(start, pattern, brightnesses, context, depth);
+        }
 		
 		return start;
 	}
 	
 	public int fillInCommands(int start, int[] pattern, MainActivity context, int depth) {
+        return fillInCommands(start, pattern, (int[])null, context, depth);
+    }
+
+    public int fillInCommands(int start, int[] pattern, int[] brightnesses, MainActivity context, int depth) {
 
 		depth += 1;
 		if ( depth > 1000 ) {
@@ -93,7 +113,7 @@ public class PatPart {
 		if (mType == T_PATTERN) {
 			PatPart[] pat = getPattern(context);
 			if (pat != null) {
-				return PatPart.fillInCommands(start, pattern, pat, context, depth);
+				return PatPart.fillInCommands(start, pattern, brightnesses, pat, context, depth);
 			} else 
 				return start;
 		}
@@ -102,6 +122,7 @@ public class PatPart {
 		int flashes = getCommandSpots(context, 0) / 2;
 		
 		for (int iii = 0; iii < flashes; iii++) {
+            if (brightnesses != null) brightnesses[start / 2] = mType == T_FLASH ? mBrightness : -1;
 			pattern[start++] = calculateTime(true);
 			pattern[start++] = calculateTime(false);
 		}
@@ -109,6 +130,29 @@ public class PatPart {
 		return start;
 	}
 	
+    public static final class Playback {
+        public final int[] durations;
+        public final int[] brightnesses;
+
+        private Playback(int[] durations, int[] brightnesses) {
+            this.durations = durations;
+            this.brightnesses = brightnesses;
+        }
+    }
+
+    public static Playback buildPlayback(PatPart[] parts, MainActivity context) {
+        int count = getCommandSpots(parts, context, 0);
+        if (count > 10000 || count < 0) {
+            MainActivity.toastOnUiThread(context, "Patterns are limited to 5,000 flashes", Toast.LENGTH_LONG);
+            return new Playback(new int[] {1000000, 1000000}, new int[] {-1});
+        }
+        int[] durations = new int[count];
+        int[] brightnesses = new int[count / 2];
+        java.util.Arrays.fill(brightnesses, -1);
+        fillInCommands(0, durations, brightnesses, parts, context, 0);
+        return new Playback(durations, brightnesses);
+    }
+
 	private PatPart[] getPattern(Context context) {
 		PatternStorage storage = null;
 		try {

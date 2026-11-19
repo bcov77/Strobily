@@ -1175,14 +1175,8 @@ public class MainActivity extends FragmentActivity {
 			mService.settingsUpdate();
 		}
 
-		int commands = PatPart.getCommandSpots(pattern, this, 0);
-		
-		int[] flashes = new int[commands];
-		
-		PatPart.fillInCommands(0, flashes, pattern, this, 0);
-		
-		startPatternFlashing(flashes, mWidgetLoop, S_WIDGET);
-		
+        startPatternFlashing(pattern, mWidgetLoop, S_WIDGET);
+
 		
 		
 	}
@@ -1240,6 +1234,12 @@ public class MainActivity extends FragmentActivity {
 	
 	public void startFlashing(int[] flashes, boolean loop, int who) {
         startFlashing(flashes, null, loop, who);
+    }
+
+    public void startPatternFlashing(PatPart[] parts, boolean loop, int who) {
+        PatPart.Playback playback = PatPart.buildPlayback(parts, this);
+        if (playback.durations.length == 0) return;
+        startFlashing(playback.durations, playback.brightnesses, loop, who);
     }
 
     public void startPatternFlashing(int[] flashes, boolean loop, int who) {

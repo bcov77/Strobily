@@ -137,7 +137,7 @@ public class StrobeFragment extends MyFragment {
 			}
 		});
 		
-        mDefaultBrightnessPercent = getDeviceDefaultBrightnessPercent();
+        mDefaultBrightnessPercent = getDeviceDefaultBrightnessPercent(mActivity);
         v.findViewById(R.id.custom_brightness_check).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -461,14 +461,14 @@ public class StrobeFragment extends MyFragment {
                         ? View.VISIBLE : View.GONE);
     }
 
-    private int getDeviceDefaultBrightnessPercent() {
+    public static int getDeviceDefaultBrightnessPercent(MainActivity activity) {
         // Reading camera metadata does not turn on the light or change its strength.
         if (Build.VERSION.SDK_INT >= 33) {
             CameraManager manager =
-                    (CameraManager)mActivity.getSystemService(
+                    (CameraManager)activity.getSystemService(
                             Context.CAMERA_SERVICE);
             try {
-                String selected = mActivity.mService != null ? mActivity.mService.mWhichCamera : null;
+                String selected = activity.mService != null ? activity.mService.mWhichCamera : null;
                 String fallback = null;
                 if (selected == null) {
                     for (String id : manager.getCameraIdList()) {

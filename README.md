@@ -53,9 +53,17 @@ Screen flashing is independent of LED brightness.
 The service accepts an optional brightness percentage array, one entry per
 ON/OFF timing pair. A null array selects the live global preference. A non-null
 array overrides global preferences; `-1` requests the original native/default
-ON command. Existing patterns, previews, and pattern shortcuts explicitly use
-`-1` arrays. Per-flash brightness is ready in the playback API; pattern storage
-and editing have not changed. JNI receives already-scaled hardware levels.
+ON command. Pattern parts store their own brightness, including through previews,
+nested patterns, and pattern shortcuts. The part editor uses the same brightness
+controls as the Strobe tab but changes only the selected part; hiding those
+controls does not erase or disable a saved part's brightness. New parts seed their
+initial value from the Strobe settings. JNI receives already-scaled hardware levels.
+
+Pattern payload format version 2 adds the brightness field. Version-1 payloads
+load every part at `-1`, retaining their native/default light output. The SQLite
+schema stays at version 1 and existing rows are not rewritten on load. The same
+reader covers named database patterns, the current draft, and imported patterns;
+saving writes the new format.
 
 Global settings update JNI state without replacing the timing sequence. A changed
 hardware level marks brightness as needing an update, allowing the next global
@@ -74,5 +82,8 @@ adb shell am force-stop com.tp77.Strobe
 adb shell am instrument -w com.tp77.Strobe.test/com.tp77.Strobe.BrightnessInstrumentation
 ```
 
-The test briefly operates the LED, checks reported hardware strength and screen
-pulse messages, then stops playback and restores the preferences it changed.
+The test checks legacy pattern loading, serialization, nested expansion, and
+dialog save/cancel behavior. It also briefly operates the LED, checks reported
+hardware strength and screen pulse messages, then stops playback and restores
+the preferences it changed. Temporary test patterns are deleted; existing named
+patterns are read without being rewritten.
