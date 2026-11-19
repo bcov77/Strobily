@@ -112,6 +112,16 @@
     <string name="custom_brightness">Custom brightness</string>
     <string name="show_aux_mode">Show AUX mode</string>
     <string name="show_aux_description">(drive external lights via aux)</string>
+
+    <string name="aux_help_1">This is a mode that turns your phone into a signal generator. Instead of flashing the LED or the screen, the intent is that you would flash a device hooked up to your phone via the headphone jack and then probably some more electronics.
+        \n\nYour phone really isn\'t designed to do this, so there are some considerations:
+        \n• The voltages on this screen aren\'t real voltages. They are just the max and minimum value that one can specify. I find that they do in fact come out close to 1V and -1V when I measure it, but that also depends on system volume and your dongle etc.
+        \n• Not all dongles will work! I tested two I own. A generic JSAUX and an apple one. The apple one does not work well. More on this below.
+        \n• Perhaps this is obvious, but be careful hooking your phone up to electronics. An optical isolator might be wise.
+        \n\nSome dongles have what\'s called an AC bias, basically the output waveform is going to be centered around 0 volts. Presumably this is good for audio, but it\'s bad for control signals. You want a dongle that can output a constant DC voltage. If you have one of the AC-biased ones, the voltages will decay to 0 on the order of a second.
+        \n\nThankfully, it\'s easy to test this! Hook a multimeter up to the output of the headphone jack (cut up an old pair of headphones if you need to). Ground to ground, positive to one of the signal wires. With the app in AUX mode, press the "Torch" button in the bottom left. This will output the high voltage. Press it again, this will output the low voltage. Now here\'s the key, if you have a compatible dongle, when it outputs the high voltage, it will stay there indefinitely. So for instance, it might output 1.1V and stay there. If you have an incompatible dongle, it will output 1.1V but will immediately decay to 0 within about a second. Assuming your Low voltage is set to 0 in the app, turning torch mode off will go back to 0 on a good dongle, or go to -1.1V and decay back to 0 on an incompatible dongle.
+        \n\nHaving tested only 2 dongles myself, I suspect that cheaper dongles are more likely to be compatible than expensive ones. I think the AC bias is likely a bit more hardware.
+        </string>
     <string name="aux_options_title">AUX output options:</string>
     <string name="aux_options_description">Control equipment connected to your phone via the headphone jack. Not all dongles work the same. Find one that passes DC current. Enable at bottom of screen</string>
     <string name="aux_high_voltage">High voltage:</string>

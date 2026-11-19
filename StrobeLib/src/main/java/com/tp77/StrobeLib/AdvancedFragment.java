@@ -4,17 +4,21 @@ import java.lang.reflect.Field;
 import java.util.HashMap;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.hardware.Camera;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v42.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
@@ -147,6 +151,16 @@ public class AdvancedFragment extends MyFragment {
                 updateSliders(false);
             }
         });
+
+        View auxHelpButton = v.findViewById(R.id.aux_help_button);
+        auxHelpButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                (new AuxHelpDialogFragment()).show(mActivity.getSupportFragmentManager(), "");
+            }
+        });
+        auxHelpButton.setVisibility(SettingsFragment.helpVisibility(mActivity));
+
         setupAuxCheckbox(R.id.aux_max_volume_check, P_AUX_MAX_VOLUME, true);
         setupAuxCheckbox(R.id.aux_volume_keys_check, P_AUX_VOLUME_KEYS, false);
         setupAuxCheckbox(R.id.aux_headphones_check, P_AUX_HEADPHONES, true);
@@ -433,6 +447,20 @@ public class AdvancedFragment extends MyFragment {
 	
 	public static int flashPreempt(Context context) {
 		return PreferenceManager.getDefaultSharedPreferences(context).getInt(P_FLASH_PREEMPT, 150);
+	}
+
+	public static class AuxHelpDialogFragment extends DialogFragment {
+
+		@Override
+		public Dialog onCreateDialog(Bundle savedInstanceState) {
+
+			AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+			ScrollView sv = (ScrollView)getActivity().getLayoutInflater().inflate(R.layout.dia_aux_help, null);
+			builder.setTitle("AUX Mode")
+				.setView(sv)
+				.setPositiveButton("Ok", null);
+			return builder.create();
+		}
 	}
 
 
